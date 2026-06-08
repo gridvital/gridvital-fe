@@ -28,11 +28,13 @@ const UserLogin = () => {
   const loginType = params.get('loginType')
   const isDemoUser = loginType === 'demoUser'
 
-  const [otp, setOtp] = useState(['', '', '', ''])
+  const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const otpRefs = useRef([])
 
   const [newPassword, setNewPassword] = useState('')
+  const [showNewPassword, setShowNewPassword] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [backendMessage, setBackendMessage] = useState('')
 
   const validateEmail = (email) => {
@@ -90,7 +92,7 @@ const UserLogin = () => {
     setBackendMessage('')
     try {
       const res = await forgotPassword({ email })
-      if (res?.status === 1) {
+      if (res?.success === true) {
         setBackendMessage(res.message)
         setStep('reset')
       } else {
@@ -115,11 +117,10 @@ const UserLogin = () => {
       const res = await resetPassword({
         email,
         otp: otp.join(''),
-        newPassword,
-        confirmPassword
+        password: newPassword
       })
 
-      if (res?.status === 1) {
+      if (res?.success === true) {
         toast.success(res.message)
         setPassword('')
         setOtp(['', '', '', ''])
@@ -360,22 +361,42 @@ const UserLogin = () => {
 
                 <div className={styles.userLoginFormGroup}>
                   <label className={styles.userLoginLabel}>New Password*</label>
-                  <input
-                    type="password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    className={styles.userLoginInput}
-                  />
+                  <div className={styles.userLoginPasswordWrapper}>
+                    <input
+                      type={showNewPassword ? 'text' : 'password'}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      className={styles.userLoginInput}
+                    />
+                    <button
+                      type="button"
+                      className={styles.userLoginPasswordToggle}
+                      onClick={() => setShowNewPassword((prev) => !prev)}
+                      tabIndex={-1}
+                    >
+                      {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
 
                 <div className={styles.userLoginFormGroup}>
                   <label className={styles.userLoginLabel}>Confirm Password*</label>
-                  <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={styles.userLoginInput}
-                  />
+                  <div className={styles.userLoginPasswordWrapper}>
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className={styles.userLoginInput}
+                    />
+                    <button
+                      type="button"
+                      className={styles.userLoginPasswordToggle}
+                      onClick={() => setShowConfirmPassword((prev) => !prev)}
+                      tabIndex={-1}
+                    >
+                      {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
 
                 <div className={styles.userLoginButtonRow}>

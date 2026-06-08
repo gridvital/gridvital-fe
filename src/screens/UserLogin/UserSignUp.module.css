@@ -1,0 +1,440 @@
+.UserSignUpContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  background: #3C2770;
+  padding: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.UserSignUpWrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.UserSignUpCard {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.UserSignUpLeftSection {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #2c2546;
+}
+
+.UserSignUpLeftImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.UserSignUpRightSection {
+  flex: 1;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #fffdec;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.UserSignUpFormHeader {
+  margin-bottom: 16px;
+  margin-top: 12px;
+}
+
+.UserSignUpFormTitle {
+  font-size: clamp(16px, 3vw, 20px);
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.UserSignUpFormDescription {
+  font-size: clamp(11px, 2vw, 13px);
+  color: #6b6b6b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.UserSignUpForm {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.5vh, 20px);
+}
+
+.UserSignUpFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.UserSignUpFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.UserSignUpLabel {
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.UserSignUpInput {
+  width: 100%;
+  padding: clamp(10px, 2vh, 12px) clamp(12px, 2vw, 16px);
+  font-size: clamp(11px, 2vw, 13px);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.UserSignUpInput::placeholder {
+  color: #999999;
+  font-size: clamp(11px, 2vw, 13px);
+}
+
+.UserSignUpInput:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.UserSignUpInput:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #999999;
+  border-color: #e8e8e8;
+}
+
+.UserSignUpInputError {
+  border-color: #e74c3c;
+}
+
+.UserSignUpInputError:focus {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.UserSignUpSelect {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.UserSignUpErrorText {
+  font-size: clamp(10px, 1.8vw, 12px);
+  color: #e74c3c;
+  margin-top: -4px;
+  display: block;
+}
+
+.UserSignUpButton {
+  width: 100%;
+  padding: clamp(11px, 2vh, 13px) clamp(18px, 3vw, 24px);
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 600;
+  color: white;
+  background: #402a7b;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.UserSignUpButton:hover:not(:disabled) {
+  background: #6d28d9;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  transform: translateY(-1px);
+}
+
+.UserSignUpButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.UserSignUpButton:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.UserSignUpBackButton {
+  width: 100%;
+  padding: clamp(11px, 2vh, 13px) clamp(18px, 3vw, 24px);
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 600;
+  color: #402a7b;
+  background: white;
+  border: 2px solid #402a7b;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.UserSignUpBackButton:hover {
+  background-color: #f5f3ff;
+  transform: translateY(-1px);
+}
+
+.UserSignUpBackButton:active {
+  transform: translateY(0);
+}
+
+.UserSignUpButtonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.UserSignUpStepIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.UserSignUpStepDot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  background: #e0e0e0;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.UserSignUpStepDotActive {
+  background: #7c3aed;
+  color: white;
+}
+
+.UserSignUpStepDotDone {
+  background: #402a7b;
+  color: white;
+}
+
+.UserSignUpStepLine {
+  width: 40px;
+  height: 2px;
+  background: #e0e0e0;
+  margin: 0 4px;
+}
+
+.UserSignUpOtpContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.UserSignUpOtpBox {
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.UserSignUpOtpBox:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.UserSignUpResendSection {
+  text-align: center;
+  margin-top: -4px;
+}
+
+.UserSignUpResendText {
+  font-size: clamp(11px, 2vw, 13px);
+  color: #6b6b6b;
+}
+
+.UserSignUpResendLink {
+  font-size: clamp(11px, 2vw, 13px);
+  color: #7c3aed;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.UserSignUpResendLink:hover {
+  text-decoration: underline;
+}
+
+.UserSignUpLoginLink {
+  text-align: center;
+  font-size: clamp(11px, 2vw, 13px);
+  color: #6b6b6b;
+  margin-top: 4px;
+}
+
+.UserSignUpLoginLinkText {
+  color: #7c3aed;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.UserSignUpLoginLinkText:hover {
+  text-decoration: underline;
+}
+
+.UserSignUpMobileHeaderLogo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.UserSignUpMobileLogo {
+  width: 150px;
+}
+
+@media (min-width: 769px) {
+  .UserSignUpMobileLogo {
+    width: 180px;
+  }
+}
+
+@media (max-width: 968px) {
+  .UserSignUpContainer {
+    padding: 16px;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .UserSignUpWrapper {
+    max-height: 95vh;
+  }
+
+  .UserSignUpCard {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+
+  .UserSignUpLeftSection {
+    display: none;
+  }
+
+  .UserSignUpRightSection {
+    padding: 6%;
+    overflow-y: auto;
+  }
+
+  .UserSignUpFormHeader {
+    margin-bottom: 14px;
+  }
+
+  .UserSignUpForm {
+    gap: 14px;
+  }
+
+  .UserSignUpButtonRow {
+    gap: 10px;
+  }
+
+  .UserSignUpFormRow {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .UserSignUpContainer {
+    padding: 12px;
+  }
+
+  .UserSignUpWrapper {
+    max-height: 96vh;
+  }
+
+  .UserSignUpCard {
+    border-radius: 10px;
+  }
+
+  .UserSignUpRightSection {
+    padding: 8%;
+  }
+
+  .UserSignUpFormHeader {
+    margin-bottom: 12px;
+  }
+
+  .UserSignUpForm {
+    gap: 12px;
+  }
+
+  .UserSignUpButtonRow {
+    gap: 8px;
+  }
+
+  .UserSignUpOtpContainer {
+    gap: 6px;
+  }
+
+  .UserSignUpOtpBox {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 600px) {
+  .UserSignUpContainer {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .UserSignUpWrapper {
+    max-height: none;
+  }
+
+  .UserSignUpRightSection {
+    padding: 4%;
+  }
+
+  .UserSignUpFormHeader {
+    margin-bottom: 12px;
+  }
+
+  .UserSignUpForm {
+    gap: 10px;
+  }
+}

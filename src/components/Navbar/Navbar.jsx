@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../store/auth/auth.slice";
 import { selectIsAuthenticated, selectUserName } from "../../store/auth/auth.selectors";
 import styles from "./Navbar.module.css";
-import wealthLogo from "../../assets/images/logos/logo.png"
+import gridVitalLogo from "../../assets/images/logos/GridVitalLogo.png"
 
 const Navbar = ({ hideIcons, noRedirect }) => {
     const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const Navbar = ({ hideIcons, noRedirect }) => {
 
                 <div className={styles.NavbarLeft}>
                     <img
-                        src={wealthLogo}
+                        src={gridVitalLogo}
                         alt="Logo"
                         className={styles.NavbarLogo}
                         onClick={() => (noRedirect ? null : navigate("/dashboard"))}

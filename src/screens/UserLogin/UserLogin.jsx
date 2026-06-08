@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './UserLogin.module.css';
-import { fetchUserExists, forgotPassword, resetPassword, userLogin, userRegister } from '../../services/apis/login.service';
-import loginDesk from "../../assets/images/login/d.jpg"
+import { forgotPassword, resetPassword, userLogin } from '../../services/apis/login.service';
+import loginDesk from "../../assets/images/login/gridvitalLoginDesk.png"
 import { setAuthFromLogin } from '../../store/auth/auth.slice';
 import { useDispatch } from 'react-redux';
-import { fetchUserProfile } from '../../store/auth/auth.thunks';
-import wealthLogo from "../../assets/images/logos/logo.png"
+import gridVitalLogo from "../../assets/images/logos/GridVitalLogo.png"
 import { APP_VERSION } from '../../config/appVersion';
 
 
@@ -16,11 +17,10 @@ const UserLogin = () => {
     window.location.href = '/dashboard';
   };
 
-  const [step, setStep] = useState('email'); // 'email', 'login', 'register'
+  const [step, setStep] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [mobileNo, setMobileNo] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -28,7 +28,6 @@ const UserLogin = () => {
   const loginType = params.get('loginType')
   const isDemoUser = loginType === 'demoUser'
 
-  // -----For Forget Password related Start -------------
   const [otp, setOtp] = useState(['', '', '', ''])
   const otpRefs = useRef([])
 
@@ -36,30 +35,16 @@ const UserLogin = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [backendMessage, setBackendMessage] = useState('')
 
-  // -----For Forget Password related End -------------
-
-
-  // Validation functions
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  };
-
-  const validateMobile = (mobile) => {
-    const mobileRegex = /^[0-9]{10}$/;
-    return mobileRegex.test(mobile);
   };
 
   const validatePassword = (password) => {
     return password.length >= 6;
   };
 
-  const validateName = (name) => {
-    return name.trim().length >= 2;
-  };
-
-  // Handle email check
-  const handleEmailSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setErrors({});
 
@@ -68,31 +53,6 @@ const UserLogin = () => {
       toast.error('Please enter a valid email address');
       return;
     }
-
-    setLoading(true);
-    try {
-      const response = await fetchUserExists({ emailId: email });
-
-      console.log("email exits:", response.status)
-
-      if (response?.status === 1) {
-        setStep('login');
-      } else if (response?.status === 0) {
-        setStep('register');
-      } else {
-        toast.error("Please try again later")
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.message || 'Error checking user');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Handle login
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setErrors({});
 
     if (!validatePassword(password)) {
       setErrors({ password: 'Password must be at least 6 characters' });
@@ -104,7 +64,7 @@ const UserLogin = () => {
     try {
       const response = await userLogin({ email, password });
 
-      if (response?.status === 1) {
+      if (response?.success === true) {
         toast.success('Login successful!');
         dispatch(
           setAuthFromLogin({
@@ -120,48 +80,6 @@ const UserLogin = () => {
       }
     } catch (error) {
       toast.error(error?.response?.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Handle register
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setErrors({});
-    const newErrors = {};
-
-    if (!validateName(name)) {
-      newErrors.name = 'Name must be at least 2 characters';
-    }
-    if (!validateMobile(mobileNo)) {
-      newErrors.mobileNo = 'Mobile number must be 10 digits';
-    }
-    if (!validateEmail(email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-    if (!validatePassword(password)) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      toast.error('Please fix all errors');
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await userRegister({ name, mobileNo, email, password });
-
-      if (response?.status === 1) {
-        toast.success('Registration successful!');
-        setStep('login');
-      } else {
-        toast.error(response?.message || 'Registration failed');
-      }
-    } catch (error) {
-      toast.error(error?.response?.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
@@ -218,13 +136,9 @@ const UserLogin = () => {
     }
   }
 
-
-
-  const handleBackToEmail = () => {
-    setStep('email');
+  const handleBackToLogin = () => {
+    setStep('login');
     setPassword('');
-    setName('');
-    setMobileNo('');
     setErrors({});
     setOtp(['', '', '', '']);
     setBackendMessage("")
@@ -236,7 +150,6 @@ const UserLogin = () => {
         <div className={styles.userLoginCard}>
           <div className={styles.userLoginLeftSection}>
             <img
-              // src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&auto=format&fit=crop"
               src={loginDesk}
               alt="Login"
               className={styles.userLoginLeftImage}
@@ -244,11 +157,11 @@ const UserLogin = () => {
           </div>
 
           <div className={styles.userLoginRightSection}>
-            {(step === 'email' || step === 'login') && (
+            {step === 'login' && (
               <>
                 <div className={styles.mobileHeaderLogo}>
                   <img
-                    src={wealthLogo}
+                    src={gridVitalLogo}
                     alt="Wealth Logo"
                     className={styles.mobileLogo}
                   />
@@ -263,40 +176,35 @@ const UserLogin = () => {
                 {isDemoUser && (
                   <div className={styles.demoMiniBox}>
                     <span className={styles.demoMiniBadge}>DEMO</span>
-
                     <span className={styles.demoMiniText}>
                       Use email for demo or create an account using your Email.
                     </span>
-
                     <span className={styles.demoMiniCred}>
                       <b>Email:</b> meadarshpandey@gmail.com
                     </span>
-
                     <span className={styles.demoMiniCred}>
                       <b>Pass:</b> Demo@123
                     </span>
                   </div>
                 )}
-
-
               </>
             )}
 
             <div className={styles.userLoginFormHeader}>
               <h2 className={styles.userLoginFormTitle}>
-                {step === 'email' && 'Login'}
                 {step === 'login' && 'Login'}
-                {step === 'register' && 'Create Account'}
+                {step === 'forgot' && 'Forgot Password'}
+                {step === 'reset' && 'Reset Password'}
               </h2>
               <p className={styles.userLoginFormDescription}>
-                {step === 'email' && 'Build wealth by investing in Digital Gold.'}
                 {step === 'login' && 'Login to app and view your assets.'}
-                {step === 'register' && 'Register with us to build your Portfolio.'}
+                {step === 'forgot' && 'Enter your email to receive OTP.'}
+                {step === 'reset' && 'Enter OTP and set a new password.'}
               </p>
             </div>
 
-            {/* Email Step */}
-            {step === 'email' && (
+            {/* Login Step */}
+            {step === 'login' && (
               <div className={styles.userLoginForm}>
                 <div className={styles.userLoginFormGroup}>
                   <label className={styles.userLoginLabel}>Email*</label>
@@ -307,44 +215,31 @@ const UserLogin = () => {
                     className={`${styles.userLoginInput} ${errors.email ? styles.userLoginInputError : ''}`}
                     placeholder="Enter your email address"
                     disabled={loading}
-                    onKeyPress={(e) => e.key === 'Enter' && handleEmailSubmit(e)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleLogin(e)}
                   />
                   {errors.email && <span className={styles.userLoginErrorText}>{errors.email}</span>}
                 </div>
-                <button
-                  type="button"
-                  onClick={handleEmailSubmit}
-                  className={styles.userLoginButton}
-                  disabled={loading}
-                >
-                  {loading ? 'Checking...' : 'Sign In / Login'}
-                </button>
-              </div>
-            )}
-
-            {/* Login Step */}
-            {step === 'login' && (
-              <div className={styles.userLoginForm}>
-                <div className={styles.userLoginFormGroup}>
-                  <label className={styles.userLoginLabel}>Email*</label>
-                  <input
-                    type="email"
-                    value={email}
-                    className={styles.userLoginInput}
-                    disabled
-                  />
-                </div>
                 <div className={styles.userLoginFormGroup}>
                   <label className={styles.userLoginLabel}>Password*</label>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`${styles.userLoginInput} ${errors.password ? styles.userLoginInputError : ''}`}
-                    placeholder="Enter password"
-                    disabled={loading}
-                    onKeyPress={(e) => e.key === 'Enter' && handleLogin(e)}
-                  />
+                  <div className={styles.userLoginPasswordWrapper}>
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`${styles.userLoginInput} ${errors.password ? styles.userLoginInputError : ''}`}
+                      placeholder="Enter password"
+                      disabled={loading}
+                      onKeyPress={(e) => e.key === 'Enter' && handleLogin(e)}
+                    />
+                    <button
+                      type="button"
+                      className={styles.userLoginPasswordToggle}
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      tabIndex={-1}
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   {errors.password && <span className={styles.userLoginErrorText}>{errors.password}</span>}
                   <div className={styles.userLoginForgotPassword}>
                     <span
@@ -362,26 +257,19 @@ const UserLogin = () => {
                     }} className={styles.userLoginResetLink}>Reset</span>
                   </div>
                 </div>
-                <div className={styles.userLoginButtonRow}>
-                  <button
-                    type="button"
-                    onClick={handleBackToEmail}
-                    className={styles.userLoginBackButton}
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleLogin}
-                    className={styles.userLoginButton}
-                    disabled={loading}
-                  >
-                    {loading ? 'Verifying...' : 'Verify'}
-                  </button>
+                <button
+                  type="button"
+                  onClick={handleLogin}
+                  className={styles.userLoginButton}
+                  disabled={loading}
+                >
+                  {loading ? 'Verifying...' : 'Login'}
+                </button>
+                <div className={styles.userLoginRegisterLink}>
+                  Don't have an account? <Link to="/register" className={styles.userLoginRegisterLinkText}>register with us</Link>
                 </div>
               </div>
             )}
-
 
             {/* Forget Step */}
             {step === 'forgot' && (
@@ -406,7 +294,7 @@ const UserLogin = () => {
                 <div className={styles.userLoginButtonRow}>
                   <button
                     type="button"
-                    onClick={handleBackToEmail}
+                    onClick={handleBackToLogin}
                     className={styles.userLoginBackButton}
                   >
                     Back
@@ -470,7 +358,6 @@ const UserLogin = () => {
                   ))}
                 </div>
 
-
                 <div className={styles.userLoginFormGroup}>
                   <label className={styles.userLoginLabel}>New Password*</label>
                   <input
@@ -494,7 +381,7 @@ const UserLogin = () => {
                 <div className={styles.userLoginButtonRow}>
                   <button
                     type="button"
-                    onClick={handleBackToEmail}
+                    onClick={handleBackToLogin}
                     className={styles.userLoginBackButton}
                   >
                     Back
@@ -507,86 +394,6 @@ const UserLogin = () => {
                     onClick={handleResetPassword}
                   >
                     {loading ? 'Resetting...' : 'Reset Password'}
-                  </button>
-                </div>
-
-                {/* <button
-                  type="button"
-                  className={styles.userLoginButton}
-                  disabled={loading}
-                  onClick={handleResetPassword}
-                >
-                  {loading ? 'Resetting...' : 'Reset Password'}
-                </button> */}
-              </div>
-            )}
-
-
-
-            {/* Register Step */}
-            {step === 'register' && (
-              <div className={styles.userLoginForm}>
-                <div className={styles.userLoginFormGroup}>
-                  <label className={styles.userLoginLabel}>Full Name*</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className={`${styles.userLoginInput} ${errors.name ? styles.userLoginInputError : ''}`}
-                    placeholder="Enter your full name"
-                    disabled={loading}
-                  />
-                  {errors.name && <span className={styles.userLoginErrorText}>{errors.name}</span>}
-                </div>
-                <div className={styles.userLoginFormGroup}>
-                  <label className={styles.userLoginLabel}>Mobile Number*</label>
-                  <input
-                    type="tel"
-                    value={mobileNo}
-                    onChange={(e) => setMobileNo(e.target.value)}
-                    className={`${styles.userLoginInput} ${errors.mobileNo ? styles.userLoginInputError : ''}`}
-                    placeholder="Enter your 10-digit mobile number"
-                    maxLength="10"
-                    disabled={loading}
-                  />
-                  {errors.mobileNo && <span className={styles.userLoginErrorText}>{errors.mobileNo}</span>}
-                </div>
-                <div className={styles.userLoginFormGroup}>
-                  <label className={styles.userLoginLabel}>Email*</label>
-                  <input
-                    type="email"
-                    value={email}
-                    className={styles.userLoginInput}
-                    disabled
-                  />
-                </div>
-                <div className={styles.userLoginFormGroup}>
-                  <label className={styles.userLoginLabel}>Password*</label>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`${styles.userLoginInput} ${errors.password ? styles.userLoginInputError : ''}`}
-                    placeholder="Create a password (min 6 characters)"
-                    disabled={loading}
-                  />
-                  {errors.password && <span className={styles.userLoginErrorText}>{errors.password}</span>}
-                </div>
-                <div className={styles.userLoginButtonRow}>
-                  <button
-                    type="button"
-                    onClick={handleBackToEmail}
-                    className={styles.userLoginBackButton}
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleRegister}
-                    className={styles.userLoginButton}
-                    disabled={loading}
-                  >
-                    {loading ? 'Creating...' : 'Confirm'}
                   </button>
                 </div>
               </div>

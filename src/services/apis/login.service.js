@@ -1,4 +1,4 @@
-import { postRequest } from "../apiClient"
+import { postRequest, putRequest } from "../apiClient"
 import { API_ROUTES } from "../../constants/apiRoutes"
 
 export const fetchUserExists = (payload) => {
@@ -11,6 +11,14 @@ export const userLogin = (payload) => {
 
 export const userRegister = (payload) => {
   return postRequest(API_ROUTES.USER_Register, payload)
+};
+
+export const userEmailVerify = (payload) => {
+  return postRequest(API_ROUTES.USER_EMAIL_VERIFY, payload)
+};
+
+export const userClinicProfileSetup = (payload) => {
+  return putRequest(API_ROUTES.USER_CLINIC_SETUP_PROFILE, payload)
 };
 
 export const forgotPassword = (payload) => {

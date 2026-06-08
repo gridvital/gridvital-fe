@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 import UserLogin from "./screens/UserLogin/UserLogin";
+import UserSignUp from "./screens/UserLogin/UserSignUp";
 import DigitalGold from "./screens/DigitalGold/DigitalGoldRoutes";
 import Dashboard from "./screens/Dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
@@ -26,7 +27,7 @@ const App = () => {
 
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
-
+          <Route path="/register" element={<UserSignUp />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { Share2, Download, Printer } from 'lucide-react';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
 import { fetchDashboardData } from '../../../services/apis/dashboard.service';
 import { selectRefreshTrigger } from '../../../store/dashboard/dashboard.selectors';
+import { QRCodeSVG } from 'qrcode.react';
 import LoadingDots from '../../../components/LoadingDots/LoadingDots';
 import styles from './MobileDashboard.module.css';
 
@@ -19,6 +21,67 @@ const MobileDashboard = () => {
   const refreshTrigger = useSelector(selectRefreshTrigger);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const qrRef = useRef(null);
+
+  const qrUrl = data?.clinicDisplayId
+    ? `https://gridvital.in/book-appointment?clinicId=${data.clinicDisplayId}`
+    : '';
+
+  const handleDownload = useCallback(() => {
+    const svg = qrRef.current?.querySelector('svg');
+    if (!svg) return;
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const scale = 4;
+    const size = 200 * scale;
+    canvas.width = size;
+    canvas.height = size;
+    const img = new Image();
+    const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    img.onload = () => {
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(img, 0, 0, size, size);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        const pngUrl = URL.createObjectURL(pngBlob);
+        const link = document.createElement('a');
+        link.href = pngUrl;
+        link.download = `qr-${data?.clinicDisplayId || 'appointment'}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(pngUrl);
+      }, 'image/png');
+    };
+    img.src = url;
+  }, [data?.clinicDisplayId]);
+
+  const handlePrint = useCallback(() => {
+    const svg = qrRef.current?.querySelector('svg');
+    if (!svg) return;
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+    printWindow.document.write(
+      `<html><body style="display:flex;align-items:center;justify-content:center;height:100vh;margin:0">${svg.outerHTML}</body></html>`,
+    );
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+  }, []);
+
+  const handleShare = useCallback(async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Book Appointment', url: qrUrl });
+      } catch {
+        // user cancelled
+      }
+    } else {
+      await navigator.clipboard.writeText(qrUrl);
+    }
+  }, [qrUrl]);
 
   useEffect(() => {
     (async () => {
@@ -94,9 +157,38 @@ const MobileDashboard = () => {
 
         {activeTab === 'console' && (
           <div className={styles.MobileDashboard_consolePanel}>
-            <h3 className={styles.MobileDashboard_consoleTitle}>Doctor's Console</h3>
-            <button className={styles.MobileDashboard_callNextBtn}>Call Next Patient</button>
-            <button className={styles.MobileDashboard_cancelTokenBtn}>Cancel Token</button>
+            <h3 className={styles.MobileDashboard_consoleTitle}>Book Appointment</h3>
+            {loading ? (
+              <div className={styles.MobileDashboard_qrWrapper}>
+                <LoadingDots />
+              </div>
+            ) : data?.clinicDisplayId ? (
+              <>
+                <div className={styles.MobileDashboard_qrWrapper} ref={qrRef}>
+                  <QRCodeSVG value={qrUrl} size={180} level="H" />
+                </div>
+                <div className={styles.MobileDashboard_qrActions}>
+                  <button className={styles.MobileDashboard_qrActionBtn} onClick={handleShare} title="Share">
+                    <Share2 size={15} />
+                    Share
+                  </button>
+                  <button className={styles.MobileDashboard_qrActionBtn} onClick={handleDownload} title="Download">
+                    <Download size={15} />
+                    Download
+                  </button>
+                  <button className={styles.MobileDashboard_qrActionBtn} onClick={handlePrint} title="Print">
+                    <Printer size={15} />
+                    Print
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className={styles.MobileDashboard_qrUnavailable}>
+                <span>QR unavailable</span>
+                <span>Clinic ID not configured</span>
+              </div>
+            )}
+            <p className={styles.MobileDashboard_qrLabel}>Scan to book appointment</p>
           </div>
         )}
       </div>

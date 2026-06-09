@@ -47,7 +47,9 @@
   padding: 20px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  overflow-x: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .DesktopDashboard_table {
@@ -56,9 +58,71 @@
   font-size: 13px;
 }
 
+.DesktopDashboard_table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.DesktopDashboard_table tbody {
+  display: block;
+  max-height: 344px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.DesktopDashboard_table tbody::-webkit-scrollbar {
+  width: 4px;
+}
+
+.DesktopDashboard_table tbody::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.DesktopDashboard_table tbody::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.DesktopDashboard_table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.DesktopDashboard_table th,
+.DesktopDashboard_table td {
+  padding: 12px 8px;
+}
+
+.DesktopDashboard_table th:nth-child(1),
+.DesktopDashboard_table td:nth-child(1) {
+  width: 60px;
+}
+
+.DesktopDashboard_table th:nth-child(2),
+.DesktopDashboard_table td:nth-child(2) {
+  width: 22%;
+}
+
+.DesktopDashboard_table th:nth-child(3),
+.DesktopDashboard_table td:nth-child(3) {
+  width: 18%;
+}
+
+.DesktopDashboard_table th:nth-child(4),
+.DesktopDashboard_table td:nth-child(4) {
+  width: auto;
+}
+
+.DesktopDashboard_table th:nth-child(5),
+.DesktopDashboard_table td:nth-child(5) {
+  width: 100px;
+}
+
 .DesktopDashboard_table th {
   text-align: left;
-  padding: 12px 8px;
   font-weight: 600;
   font-size: 11px;
   text-transform: uppercase;
@@ -68,9 +132,14 @@
 }
 
 .DesktopDashboard_table td {
-  padding: 12px 8px;
   border-bottom: 1px solid #f1f5f9;
   color: #0F172A;
+}
+
+.DesktopDashboard_table td:nth-child(4) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .DesktopDashboard_table tbody tr:hover {
@@ -125,45 +194,66 @@
 .DesktopDashboard_controlTitle {
   font-size: 16px;
   font-weight: 700;
-  margin: 0 0 8px;
+  margin: 0;
   color: #0F172A;
   text-align: center;
 }
 
-.DesktopDashboard_callNextBtn {
-  width: 100%;
-  padding: 18px;
-  background-color: #0284C7;
-  color: #fff;
-  border: none;
+.DesktopDashboard_qrWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  min-height: 200px;
+}
+
+.DesktopDashboard_qrUnavailable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
   border-radius: 12px;
-  font-size: 17px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-.DesktopDashboard_callNextBtn:hover {
-  background-color: #0369a1;
+.DesktopDashboard_qrActions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 
-.DesktopDashboard_callNextBtn:active {
-  transform: scale(0.98);
-}
-
-.DesktopDashboard_cancelTokenBtn {
-  width: 100%;
-  padding: 14px;
-  background-color: #fff;
-  color: #ef4444;
-  border: 2px solid #fca5a5;
-  border-radius: 12px;
-  font-size: 14px;
+.DesktopDashboard_qrActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: #475569;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.DesktopDashboard_cancelTokenBtn:hover {
-  background-color: #fef2f2;
+.DesktopDashboard_qrActionBtn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0F172A;
+}
+
+.DesktopDashboard_qrLabel {
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
 }

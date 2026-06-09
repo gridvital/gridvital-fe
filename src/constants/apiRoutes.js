@@ -43,6 +43,13 @@ export const API_ROUTES = {
   USER_PROFILE: "/api/users/getprofile",
   DELETE_USER_Account: "/api/users/delete-account",
 
+
+
+  // Patients related APIS-------
+  PATIENT_QR_REGISTER: "/api/patient/qr-register",
+  CLINIC_DETAILS_PUBLIC: "/api/clinic/public",
+
+
   WALLET_BALANCE_WITH_BANK: "/api/wallet/wallet-balance",
   WALLET_HISTORY: "/api/wallet/wallet-history",
   WALLET_ADD_BANK: "/api/wallet/add-bank",

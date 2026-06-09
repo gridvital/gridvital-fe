@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
 import MainDashboard from "./screens/MainDashboard/MainDashboard";
+import QRPatientAppointment from './screens/PatientScreen/Appointment/Appointment'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
           <Route path="/register" element={<UserSignUp />} />
+          <Route path="/book-appointment" element={<QRPatientAppointment />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>

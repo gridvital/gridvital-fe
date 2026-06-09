@@ -1,0 +1,572 @@
+.PatientAppointment_wrapper {
+  min-height: 100vh;
+  background-color: #F8FAFC;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.PatientAppointment_container {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* ---------- LOADING ---------- */
+
+.PatientAppointment_loadingScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+}
+
+.PatientAppointment_loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #0284C7;
+  border-radius: 50%;
+  animation: PatientAppointment_spin 0.8s linear infinite;
+}
+
+@keyframes PatientAppointment_spin {
+  to { transform: rotate(360deg); }
+}
+
+.PatientAppointment_loadingText {
+  color: #64748B;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ---------- HEADER ---------- */
+
+.PatientAppointment_header {
+  text-align: center;
+  padding: 24px 0 12px;
+}
+
+.PatientAppointment_logo {
+  height: 31px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .PatientAppointment_logo {
+    height: 32px;
+  }
+}
+
+/* ---------- TITLE CARD ---------- */
+
+.PatientAppointment_titleCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.PatientAppointment_title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px;
+}
+
+.PatientAppointment_dateTime {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+/* ---------- CLINIC CARD ---------- */
+
+.PatientAppointment_clinicCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.PatientAppointment_clinicInfo {
+  min-width: 0;
+}
+
+.PatientAppointment_clinicName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 6px;
+}
+
+.PatientAppointment_doctorRow {
+  font-size: 13px;
+  color: #475569;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.PatientAppointment_doctorName {
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.PatientAppointment_dot {
+  color: #cbd5e1;
+}
+
+.PatientAppointment_specialization {
+  color: #64748B;
+}
+
+.PatientAppointment_location {
+  font-size: 12px;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ---------- FORM ---------- */
+
+.PatientAppointment_form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.PatientAppointment_field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.PatientAppointment_label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.PatientAppointment_input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.PatientAppointment_input:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.PatientAppointment_inputError {
+  border-color: #ef4444;
+}
+
+.PatientAppointment_inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.PatientAppointment_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.PatientAppointment_textarea {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100px;
+}
+
+.PatientAppointment_textarea:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.PatientAppointment_error {
+  font-size: 12px;
+  color: #ef4444;
+  margin: 2px 0 0;
+}
+
+/* ---------- GENDER ---------- */
+
+.PatientAppointment_genderRow {
+  display: flex;
+  gap: 10px;
+}
+
+.PatientAppointment_genderOption {
+  flex: 1;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748B;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.PatientAppointment_genderOptionActive {
+  border-color: #0284C7;
+  background: #f0f9ff;
+  color: #0284C7;
+  font-weight: 600;
+}
+
+.PatientAppointment_genderRadio {
+  display: none;
+}
+
+/* ---------- CONSENT ---------- */
+
+.PatientAppointment_consentRow {
+  margin-top: 4px;
+}
+
+.PatientAppointment_consentLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #475569;
+  user-select: none;
+}
+
+.PatientAppointment_consentCheckbox {
+  display: none;
+}
+
+.PatientAppointment_customCheckbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.PatientAppointment_customCheckboxChecked {
+  background: #0284C7;
+  border-color: #0284C7;
+}
+
+.PatientAppointment_consentText {
+  line-height: 1.4;
+}
+
+.PatientAppointment_consentText strong {
+  color: #0284C7;
+  font-weight: 600;
+}
+
+/* ---------- SUBMIT ---------- */
+
+.PatientAppointment_submitBtn {
+  height: 52px;
+  border: none;
+  border-radius: 10px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 4px;
+}
+
+.PatientAppointment_submitBtn:hover:not(:disabled) {
+  background: #0369a1;
+}
+
+.PatientAppointment_submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.PatientAppointment_submitBtnDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- MODAL ---------- */
+
+.PatientAppointment_modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 20px;
+  animation: PatientAppointment_fadeIn 0.2s ease;
+}
+
+@keyframes PatientAppointment_fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.PatientAppointment_modalBox {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 440px;
+  width: 100%;
+  padding: 24px;
+  animation: PatientAppointment_modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes PatientAppointment_modalSlide {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.PatientAppointment_modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 16px;
+}
+
+.PatientAppointment_modalBody {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.PatientAppointment_modalBody p {
+  margin: 0 0 12px;
+}
+
+.PatientAppointment_modalWarning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #92400e;
+  margin: 0;
+}
+
+.PatientAppointment_modalFooter {
+  display: flex;
+  gap: 10px;
+}
+
+.PatientAppointment_modalConsentBtn {
+  flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.PatientAppointment_modalConsentBtn:hover {
+  background: #0369a1;
+}
+
+.PatientAppointment_modalCancelBtn {
+  flex: 1;
+  height: 46px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.PatientAppointment_modalCancelBtn:hover {
+  background: #f8fafc;
+}
+
+/* ---------- SUCCESS ---------- */
+
+.PatientAppointment_successScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0 24px;
+}
+
+.PatientAppointment_successBadge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.PatientAppointment_tokenWidget {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 40px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+}
+
+.PatientAppointment_tokenLabel {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+
+.PatientAppointment_tokenNumber {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #0F172A;
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -2px;
+}
+
+.PatientAppointment_tokenStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.PatientAppointment_statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F59E0B;
+  animation: PatientAppointment_pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes PatientAppointment_pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.PatientAppointment_receiptCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+}
+
+.PatientAppointment_receiptTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 14px;
+}
+
+.PatientAppointment_receiptRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.PatientAppointment_receiptRow:last-child {
+  border-bottom: none;
+}
+
+.PatientAppointment_receiptLabel {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.PatientAppointment_receiptValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.PatientAppointment_successMessage {
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 340px;
+  margin: 0;
+}
+
+/* ---------- TABLET / DESKTOP ---------- */
+
+@media (min-width: 640px) {
+  .PatientAppointment_wrapper {
+    padding: 32px;
+  }
+
+  .PatientAppointment_container {
+    max-width: 560px;
+  }
+
+  .PatientAppointment_logo {
+    font-size: 30px;
+  }
+
+  .PatientAppointment_title {
+    font-size: 20px;
+  }
+}

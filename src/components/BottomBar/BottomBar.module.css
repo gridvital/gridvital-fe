@@ -6,7 +6,7 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   padding-bottom: env(safe-area-inset-bottom);
-  z-index: 1000;
+  /* z-index: 1000; */
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08), 0 -2px 6px rgba(0, 0, 0, 0.04);
 }

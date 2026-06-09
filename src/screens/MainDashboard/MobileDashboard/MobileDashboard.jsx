@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
+import { fetchDashboardData } from '../../../services/apis/dashboard.service';
+import { selectRefreshTrigger } from '../../../store/dashboard/dashboard.selectors';
+import LoadingDots from '../../../components/LoadingDots/LoadingDots';
 import styles from './MobileDashboard.module.css';
 
-const patients = [
-  { token: '#101', name: 'Rajesh Kumar', phone: '+91 98765 43210', complaints: 'Fever & Cold', status: 'completed' },
-  { token: '#102', name: 'Priya Sharma', phone: '+91 87654 32109', complaints: 'Headache', status: 'pending' },
-  { token: '#103', name: 'Amit Singh', phone: '+91 76543 21098', complaints: 'BP Checkup', status: 'completed' },
-  { token: '#104', name: 'Sneha Patel', phone: '+91 65432 10987', complaints: 'Stomach Pain', status: 'pending' },
-];
+const statusClassMap = {
+  completed: styles.MobileDashboard_statusCompleted,
+  cancelled: styles.MobileDashboard_statusCancelled,
+  'in consultation': styles.MobileDashboard_statusConsultation,
+  'in-consultation': styles.MobileDashboard_statusConsultation,
+  waiting: styles.MobileDashboard_statusWaiting,
+};
 
 const MobileDashboard = () => {
   const [activeTab, setActiveTab] = useState('queue');
+  const refreshTrigger = useSelector(selectRefreshTrigger);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await fetchDashboardData();
+        setData(res.data);
+      } catch {
+        // handle error silently
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [refreshTrigger]);
 
   return (
     <LayoutContainer>
@@ -18,19 +40,19 @@ const MobileDashboard = () => {
         <div className={styles.MobileDashboard_metricsGrid}>
           <div className={styles.MobileDashboard_metricCard}>
             <span className={styles.MobileDashboard_metricLabel}>Live Token</span>
-            <span className={styles.MobileDashboard_metricValue}>#104</span>
+            <span className={styles.MobileDashboard_metricValue}>{loading ? <LoadingDots /> : data?.liveTokenCounter}</span>
           </div>
           <div className={styles.MobileDashboard_metricCard}>
             <span className={styles.MobileDashboard_metricLabel}>Today's Visits</span>
-            <span className={styles.MobileDashboard_metricValue}>47</span>
+            <span className={styles.MobileDashboard_metricValue}>{loading ? <LoadingDots /> : data?.totalPatientsToday}</span>
           </div>
           <div className={styles.MobileDashboard_metricCard}>
             <span className={styles.MobileDashboard_metricLabel}>Monthly Total</span>
-            <span className={styles.MobileDashboard_metricValue}>1,284</span>
+            <span className={styles.MobileDashboard_metricValue}>{loading ? <LoadingDots /> : data?.monthlyTotalPatients}</span>
           </div>
           <div className={styles.MobileDashboard_metricCard}>
             <span className={styles.MobileDashboard_metricLabel}>Total Earnings</span>
-            <span className={styles.MobileDashboard_metricValue}>₹14,000</span>
+            <span className={styles.MobileDashboard_metricValue}>{loading ? <LoadingDots /> : data?.todayRevenue}</span>
           </div>
         </div>
 
@@ -51,12 +73,12 @@ const MobileDashboard = () => {
 
         {activeTab === 'queue' && (
           <div className={styles.MobileDashboard_queueList}>
-            {patients.map(p => (
+            {data?.patients?.map(p => (
               <div key={p.token} className={styles.MobileDashboard_patientCard}>
                 <div className={styles.MobileDashboard_patientCardTop}>
                   <span className={styles.MobileDashboard_patientToken}>{p.token}</span>
-                  <span className={`${styles.MobileDashboard_patientStatus} ${p.status === 'completed' ? styles.MobileDashboard_statusCompleted : styles.MobileDashboard_statusPending}`}>
-                    {p.status.charAt(0).toUpperCase() + p.status.slice(1)}
+                  <span className={`${styles.MobileDashboard_patientStatus} ${statusClassMap[p.status?.toLowerCase()] || styles.MobileDashboard_statusWaiting}`}>
+                    {p.status}
                   </span>
                 </div>
                 <div className={styles.MobileDashboard_patientName}>{p.name}</div>

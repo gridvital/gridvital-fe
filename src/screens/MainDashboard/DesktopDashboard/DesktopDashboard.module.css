@@ -95,9 +95,19 @@
   color: #065f46;
 }
 
-.DesktopDashboard_statusPending {
+.DesktopDashboard_statusConsultation {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.DesktopDashboard_statusWaiting {
   background-color: #fef3c7;
   color: #92400e;
+}
+
+.DesktopDashboard_statusCancelled {
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 .DesktopDashboard_controlPanel {

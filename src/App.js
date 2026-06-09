@@ -8,7 +8,7 @@ import Dashboard from "./screens/Dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
-import MainDashboard from "./screens/MainDashboard/MainDashboard"
+import MainDashboard from "./screens/MainDashboard/MainDashboard";
 
 const App = () => {
   return (
@@ -17,33 +17,28 @@ const App = () => {
         position="bottom-center"
         reverseOrder={false}
         toastOptions={{
-          duration: 3000
+          duration: 3000,
         }}
         containerStyle={{
-          zIndex: 99999999
+          zIndex: 99999999,
         }}
-
       />
       <Routes>
-
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
           <Route path="/register" element={<UserSignUp />} />
-          <Route path="/dashboard" element={<MainDashboard />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>
           <Route element={<ProtectedLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<MainDashboard />} />
             <Route path="/digitalGold/*" element={<DigitalGold />} />
             <Route path="/Profile" element={<Profile />} />
           </Route>
         </Route>
 
         <Route path="*" element={<UserLogin />} />
-
       </Routes>
-
     </BrowserRouter>
   );
 };

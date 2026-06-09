@@ -34,6 +34,55 @@
   align-items: center;
 }
 
+.Navbar_actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.Navbar_nextBtn,
+.Navbar_skipBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.Navbar_nextBtn:disabled,
+.Navbar_skipBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.Navbar_nextBtn {
+  background-color: #16a34a;
+  color: #fff;
+}
+
+.Navbar_nextBtn:hover:not(:disabled) {
+  background-color: #15803d;
+}
+
+.Navbar_skipBtn {
+  background-color: transparent;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.Navbar_skipBtn:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
 .Navbar_profileAvatar {
   width: 38px;
   height: 38px;

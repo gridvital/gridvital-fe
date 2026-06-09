@@ -100,9 +100,19 @@
   color: #065f46;
 }
 
-.MobileDashboard_statusPending {
+.MobileDashboard_statusConsultation {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.MobileDashboard_statusWaiting {
   background-color: #fef3c7;
   color: #92400e;
+}
+
+.MobileDashboard_statusCancelled {
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 .MobileDashboard_patientName {

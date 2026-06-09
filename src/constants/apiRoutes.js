@@ -37,15 +37,16 @@ export const API_ROUTES = {
   FORGET_PASSWORD: "/api/clinic/forgot-password",
   RESET_PASSWORD: "/api/clinic/reset-password",
 
+  GET_DASHBOARD_DATA: "/api/clinic/dashboard-metrics",
+  CALL_NEXT_PATIENTS: "/api/clinic/call-next",
 
-  
   USER_PROFILE: "/api/users/getprofile",
   DELETE_USER_Account: "/api/users/delete-account",
 
   WALLET_BALANCE_WITH_BANK: "/api/wallet/wallet-balance",
-  WALLET_HISTORY: '/api/wallet/wallet-history',
-  WALLET_ADD_BANK: '/api/wallet/add-bank',
-  WALLET_WITHDRAW_BALANCE: '/api/wallet/withdraw-wallet-balance',
+  WALLET_HISTORY: "/api/wallet/wallet-history",
+  WALLET_ADD_BANK: "/api/wallet/add-bank",
+  WALLET_WITHDRAW_BALANCE: "/api/wallet/withdraw-wallet-balance",
 
   GOLD_INVESTED_SUMMARY: "/api/gold/invested-summary",
   GOLD_ORDER_DETAILS: "/api/gold/orders",
@@ -61,5 +62,5 @@ export const API_ROUTES = {
   FETCH_SELL_LIVE_PRICE: "/api/gold/sell-price",
   FETCH_GOLD_LIVE_PRICE: "/api/gold/live-price",
 
-  GET_DASHBOARD_ALL_ASSETS_DETAILS: "/api/users/assets-details"
-}
+  GET_DASHBOARD_ALL_ASSETS_DETAILS: "/api/users/assets-details",
+};

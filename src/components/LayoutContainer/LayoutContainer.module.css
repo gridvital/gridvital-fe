@@ -1,0 +1,19 @@
+.LayoutContainer_wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #F8FAFC;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0F172A;
+}
+
+.LayoutContainer_body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.LayoutContainer_main {
+  flex: 1;
+  overflow-y: auto;
+}

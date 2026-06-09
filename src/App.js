@@ -8,6 +8,7 @@ import Dashboard from "./screens/Dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
 import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
+import MainDashboard from "./screens/MainDashboard/MainDashboard"
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
           <Route path="/register" element={<UserSignUp />} />
+          <Route path="/dashboard" element={<MainDashboard />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>

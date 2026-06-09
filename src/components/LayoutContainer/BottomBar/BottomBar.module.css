@@ -1,0 +1,65 @@
+.BottomBar_container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 1000;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08), 0 -2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.BottomBar_wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 65px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.BottomBar_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8e8e93;
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.BottomBar_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.BottomBar_label {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.BottomBar_itemActive {
+  color: #0284C7;
+}
+
+.BottomBar_indicator {
+  position: absolute;
+  top: -12px;
+  width: 20px;
+  height: 4px;
+  background-color: #0284C7;
+  border-radius: 0 0 4px 4px;
+}
+
+@media (min-width: 768px) {
+  .BottomBar_container {
+    display: none;
+  }
+}

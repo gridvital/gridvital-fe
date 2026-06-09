@@ -1,0 +1,182 @@
+.MobileDashboard_content {
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+.MobileDashboard_metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.MobileDashboard_metricCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.MobileDashboard_metricLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.MobileDashboard_metricValue {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.1;
+}
+
+.MobileDashboard_tabBar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.MobileDashboard_tab {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.MobileDashboard_tabActive {
+  background-color: #0284C7;
+  color: #fff;
+  border-color: #0284C7;
+}
+
+.MobileDashboard_queueList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.MobileDashboard_patientCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.MobileDashboard_patientCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.MobileDashboard_patientToken {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0284C7;
+}
+
+.MobileDashboard_patientStatus {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.MobileDashboard_statusCompleted {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.MobileDashboard_statusPending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.MobileDashboard_patientName {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #0F172A;
+}
+
+.MobileDashboard_patientDetails {
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.MobileDashboard_patientDetailsDot {
+  color: #cbd5e1;
+}
+
+.MobileDashboard_consolePanel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.MobileDashboard_consoleTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #0F172A;
+  text-align: center;
+}
+
+.MobileDashboard_callNextBtn {
+  width: 100%;
+  padding: 20px;
+  background-color: #0284C7;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.MobileDashboard_callNextBtn:hover {
+  background-color: #0369a1;
+}
+
+.MobileDashboard_callNextBtn:active {
+  transform: scale(0.97);
+}
+
+.MobileDashboard_cancelTokenBtn {
+  width: 100%;
+  padding: 16px;
+  background-color: #fff;
+  color: #ef4444;
+  border: 2px solid #fca5a5;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.MobileDashboard_cancelTokenBtn:hover {
+  background-color: #fef2f2;
+}

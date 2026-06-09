@@ -96,7 +96,7 @@ const PatientAppointment = () => {
         complaints: form.complaints.trim(),
         isConsent: 1,
       });
-      if (res?.data) {
+      if (res?.success === true) {
         navigate('/appointment-success?tokenId=' + res.data.id + '&clinicDisplayId=' + clinicId);
       } else if (res?.message) {
         showToast('error', res.message);

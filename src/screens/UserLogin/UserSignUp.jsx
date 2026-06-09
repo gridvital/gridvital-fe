@@ -1,34 +1,38 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import styles from './UserSignUp.module.css';
-import { userRegister, userEmailVerify, userClinicProfileSetup } from '../../services/apis/login.service';
-import loginDesk from "../../assets/images/login/gridvitalLoginDesk.png"
-import gridVitalLogo from "../../assets/images/logos/GridVitalLogo.png"
+import { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import styles from "./UserSignUp.module.css";
+import {
+  userRegister,
+  userEmailVerify,
+  userClinicProfileSetup,
+} from "../../services/apis/login.service";
+import loginDesk from "../../assets/images/login/gridvitalLoginDesk.png";
+import gridVitalLogo from "../../assets/images/logos/GridVitalLogo.png";
 
 const UserSignUp = () => {
   const navigate = useNavigate();
 
-  const [registerStep, setRegisterStep] = useState('credentials');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [registerStep, setRegisterStep] = useState("credentials");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const [otp, setOtp] = useState(['', '', '', '', '', ''])
-  const otpRefs = useRef([])
-  const [resendTimer, setResendTimer] = useState(0)
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const otpRefs = useRef([]);
+  const [resendTimer, setResendTimer] = useState(0);
 
   const [profile, setProfile] = useState({
-    clinicName: '',
-    doctorName: '',
-    gender: '',
-    phone: '',
-    registrationNumber: '',
-    address: '',
-    state: '',
-    city: '',
-    defaultConsultationFee: ''
+    clinicName: "",
+    doctorName: "",
+    gender: "",
+    phone: "",
+    registrationNumber: "",
+    address: "",
+    state: "",
+    city: "",
+    defaultConsultationFee: "",
   });
 
   useEffect(() => {
@@ -55,14 +59,14 @@ const UserSignUp = () => {
     setErrors({});
 
     if (!validateEmail(email)) {
-      setErrors({ email: 'Please enter a valid email address' });
-      toast.error('Please enter a valid email address');
+      setErrors({ email: "Please enter a valid email address" });
+      toast.error("Please enter a valid email address");
       return;
     }
 
     if (!validatePassword(password)) {
-      setErrors({ password: 'Password must be at least 6 characters' });
-      toast.error('Password must be at least 6 characters');
+      setErrors({ password: "Password must be at least 6 characters" });
+      toast.error("Password must be at least 6 characters");
       return;
     }
 
@@ -71,17 +75,17 @@ const UserSignUp = () => {
       const response = await userRegister({ email, password });
 
       if (response?.success === true) {
-        toast.success(response?.message || 'OTP sent to email');
-        setRegisterStep('otp');
+        toast.success(response?.message || "OTP sent to email");
+        setRegisterStep("otp");
         setResendTimer(60);
         if (otpRefs.current[0]) {
           otpRefs.current[0].focus();
         }
       } else {
-        toast.error(response?.message || 'Registration failed');
+        toast.error(response?.message || "Registration failed");
       }
     } catch (error) {
-      toast.error(error?.response?.message || 'Registration failed');
+      toast.error(error?.response?.message || "Registration failed");
     } finally {
       setLoading(false);
     }
@@ -95,22 +99,22 @@ const UserSignUp = () => {
       const response = await userRegister({ email, password });
 
       if (response?.success === true) {
-        toast.success('OTP resent to email');
+        toast.success("OTP resent to email");
         setResendTimer(60);
       } else {
-        toast.error(response?.message || 'Failed to resend OTP');
+        toast.error(response?.message || "Failed to resend OTP");
       }
     } catch (error) {
-      toast.error(error?.response?.message || 'Failed to resend OTP');
+      toast.error(error?.response?.message || "Failed to resend OTP");
     } finally {
       setLoading(false);
     }
   };
 
   const handleVerifyOtp = async () => {
-    const otpString = otp.join('');
+    const otpString = otp.join("");
     if (otpString.length !== 6) {
-      toast.error('Please enter complete OTP');
+      toast.error("Please enter complete OTP");
       return;
     }
 
@@ -119,13 +123,13 @@ const UserSignUp = () => {
       const response = await userEmailVerify({ email, otp: otpString });
 
       if (response?.success === true) {
-        toast.success('Email verified successfully');
-        setRegisterStep('profile');
+        toast.success("Email verified successfully");
+        setRegisterStep("profile");
       } else {
-        toast.error(response?.message || 'OTP verification failed');
+        toast.error(response?.message || "OTP verification failed");
       }
     } catch (error) {
-      toast.error(error?.response?.message || 'OTP verification failed');
+      toast.error(error?.response?.message || "OTP verification failed");
     } finally {
       setLoading(false);
     }
@@ -145,27 +149,34 @@ const UserSignUp = () => {
     setErrors({});
     const newErrors = {};
 
-    if (!profile.clinicName.trim()) newErrors.clinicName = 'Clinic name is required';
-    if (!profile.doctorName.trim()) newErrors.doctorName = 'Doctor name is required';
-    if (!profile.gender) newErrors.gender = 'Gender is required';
-    if (!profile.phone.trim() || !/^[0-9]{10}$/.test(profile.phone)) newErrors.phone = 'Valid 10-digit phone is required';
-    if (!profile.registrationNumber.trim()) newErrors.registrationNumber = 'Registration number is required';
-    if (!profile.address.trim()) newErrors.address = 'Address is required';
-    if (!profile.state.trim()) newErrors.state = 'State is required';
-    if (!profile.city.trim()) newErrors.city = 'City is required';
-    if (!profile.defaultConsultationFee || isNaN(profile.defaultConsultationFee) || Number(profile.defaultConsultationFee) <= 0) {
-      newErrors.defaultConsultationFee = 'Valid consultation fee is required';
-    }
+    if (!profile.clinicName.trim())
+      newErrors.clinicName = "Clinic name is required";
+    if (!profile.doctorName.trim())
+      newErrors.doctorName = "Doctor name is required";
+    if (!profile.gender) newErrors.gender = "Gender is required";
+    if (!profile.phone.trim() || !/^[0-9]{10}$/.test(profile.phone))
+      newErrors.phone = "Valid 10-digit phone is required";
+    if (!profile.registrationNumber.trim())
+      newErrors.registrationNumber = "Registration number is required";
+    if (!profile.address.trim()) newErrors.address = "Address is required";
+    if (!profile.state.trim()) newErrors.state = "State is required";
+    if (!profile.city.trim()) newErrors.city = "City is required";
+    // if (!profile.defaultConsultationFee || isNaN(profile.defaultConsultationFee) || Number(profile.defaultConsultationFee) <= 0) {
+    //   newErrors.defaultConsultationFee = 'Valid consultation fee is required';
+    // }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      toast.error('Please fix all errors');
+      toast.error("Please fix all errors");
       return;
     }
 
     const payload = {
       ...profile,
-      defaultConsultationFee: Number(profile.defaultConsultationFee)
+      // defaultConsultationFee: Number(profile.defaultConsultationFee)
+      ...(profile.defaultConsultationFee && {
+        defaultConsultationFee: Number(profile.defaultConsultationFee),
+      }),
     };
 
     setLoading(true);
@@ -173,13 +184,13 @@ const UserSignUp = () => {
       const response = await userClinicProfileSetup(payload);
 
       if (response?.success === true) {
-        toast.success('Profile setup complete! Please login.');
-        navigate('/login');
+        toast.success("Profile setup complete! Please login.");
+        navigate("/login");
       } else {
-        toast.error(response?.message || 'Profile setup failed');
+        toast.error(response?.message || "Profile setup failed");
       }
     } catch (error) {
-      toast.error(error?.response?.message || 'Profile setup failed');
+      toast.error(error?.response?.message || "Profile setup failed");
     } finally {
       setLoading(false);
     }
@@ -208,27 +219,40 @@ const UserSignUp = () => {
 
             <div className={styles.UserSignUpFormHeader}>
               <h2 className={styles.UserSignUpFormTitle}>
-                {registerStep === 'credentials' && 'Create Account'}
-                {registerStep === 'otp' && 'Verify Email'}
-                {registerStep === 'profile' && 'Complete Profile'}
+                {registerStep === "credentials" && "Create Account"}
+                {registerStep === "otp" && "Verify Email"}
+                {registerStep === "profile" && "Complete Profile"}
               </h2>
               <p className={styles.UserSignUpFormDescription}>
-                {registerStep === 'credentials' && 'Register your clinic to get started.'}
-                {registerStep === 'otp' && 'Enter the OTP sent to your email.'}
-                {registerStep === 'profile' && 'Fill in your clinic details.'}
+                {registerStep === "credentials" &&
+                  "Register your clinic to get started."}
+                {registerStep === "otp" && "Enter the OTP sent to your email."}
+                {registerStep === "profile" && "Fill in your clinic details."}
               </p>
             </div>
 
             <div className={styles.UserSignUpStepIndicator}>
-              <span className={`${styles.UserSignUpStepDot} ${registerStep === 'credentials' ? styles.UserSignUpStepDotActive : styles.UserSignUpStepDotDone}`}>1</span>
+              <span
+                className={`${styles.UserSignUpStepDot} ${registerStep === "credentials" ? styles.UserSignUpStepDotActive : styles.UserSignUpStepDotDone}`}
+              >
+                1
+              </span>
               <span className={styles.UserSignUpStepLine}></span>
-              <span className={`${styles.UserSignUpStepDot} ${registerStep === 'otp' ? styles.UserSignUpStepDotActive : registerStep === 'profile' ? styles.UserSignUpStepDotDone : ''}`}>2</span>
+              <span
+                className={`${styles.UserSignUpStepDot} ${registerStep === "otp" ? styles.UserSignUpStepDotActive : registerStep === "profile" ? styles.UserSignUpStepDotDone : ""}`}
+              >
+                2
+              </span>
               <span className={styles.UserSignUpStepLine}></span>
-              <span className={`${styles.UserSignUpStepDot} ${registerStep === 'profile' ? styles.UserSignUpStepDotActive : ''}`}>3</span>
+              <span
+                className={`${styles.UserSignUpStepDot} ${registerStep === "profile" ? styles.UserSignUpStepDotActive : ""}`}
+              >
+                3
+              </span>
             </div>
 
             {/* Step 1: Credentials */}
-            {registerStep === 'credentials' && (
+            {registerStep === "credentials" && (
               <form className={styles.UserSignUpForm} onSubmit={handleSendOtp}>
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Email*</label>
@@ -236,11 +260,15 @@ const UserSignUp = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.email ? styles.UserSignUpInputError : ''}`}
+                    className={`${styles.UserSignUpInput} ${errors.email ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter your email address"
                     disabled={loading}
                   />
-                  {errors.email && <span className={styles.UserSignUpErrorText}>{errors.email}</span>}
+                  {errors.email && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.email}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Password*</label>
@@ -248,27 +276,34 @@ const UserSignUp = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.password ? styles.UserSignUpInputError : ''}`}
+                    className={`${styles.UserSignUpInput} ${errors.password ? styles.UserSignUpInputError : ""}`}
                     placeholder="Create a password (min 6 characters)"
                     disabled={loading}
                   />
-                  {errors.password && <span className={styles.UserSignUpErrorText}>{errors.password}</span>}
+                  {errors.password && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.password}
+                    </span>
+                  )}
                 </div>
                 <button
                   type="submit"
                   className={styles.UserSignUpButton}
                   disabled={loading}
                 >
-                  {loading ? 'Sending...' : 'Verify Email'}
+                  {loading ? "Sending..." : "Verify Email"}
                 </button>
                 <div className={styles.UserSignUpLoginLink}>
-                  Already have an account? <Link to="/login" className={styles.UserSignUpLoginLinkText}>Login</Link>
+                  Already have an account?{" "}
+                  <Link to="/login" className={styles.UserSignUpLoginLinkText}>
+                    Login
+                  </Link>
                 </div>
               </form>
             )}
 
             {/* Step 2: OTP */}
-            {registerStep === 'otp' && (
+            {registerStep === "otp" && (
               <div className={styles.UserSignUpForm}>
                 <div className={styles.UserSignUpOtpContainer}>
                   {otp.map((digit, index) => (
@@ -281,25 +316,25 @@ const UserSignUp = () => {
                       value={digit}
                       className={styles.UserSignUpOtpBox}
                       onChange={(e) => {
-                        const value = e.target.value.replace(/[^0-9]/g, '')
-                        if (!value) return
+                        const value = e.target.value.replace(/[^0-9]/g, "");
+                        if (!value) return;
 
-                        const updated = [...otp]
-                        updated[index] = value
-                        setOtp(updated)
+                        const updated = [...otp];
+                        updated[index] = value;
+                        setOtp(updated);
 
                         if (index < otp.length - 1) {
-                          otpRefs.current[index + 1]?.focus()
+                          otpRefs.current[index + 1]?.focus();
                         }
                       }}
                       onKeyDown={(e) => {
-                        if (e.key === 'Backspace') {
-                          const updated = [...otp]
+                        if (e.key === "Backspace") {
+                          const updated = [...otp];
                           if (updated[index]) {
-                            updated[index] = ''
-                            setOtp(updated)
+                            updated[index] = "";
+                            setOtp(updated);
                           } else if (index > 0) {
-                            otpRefs.current[index - 1]?.focus()
+                            otpRefs.current[index - 1]?.focus();
                           }
                         }
                       }}
@@ -327,8 +362,8 @@ const UserSignUp = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      setRegisterStep('credentials');
-                      setOtp(['', '', '', '', '', '']);
+                      setRegisterStep("credentials");
+                      setOtp(["", "", "", "", "", ""]);
                       setErrors({});
                     }}
                     className={styles.UserSignUpBackButton}
@@ -341,45 +376,62 @@ const UserSignUp = () => {
                     className={styles.UserSignUpButton}
                     disabled={loading}
                   >
-                    {loading ? 'Verifying...' : 'Verify OTP'}
+                    {loading ? "Verifying..." : "Verify OTP"}
                   </button>
                 </div>
               </div>
             )}
 
             {/* Step 3: Profile Setup */}
-            {registerStep === 'profile' && (
-              <form className={styles.UserSignUpForm} onSubmit={handleSetupProfile}>
+            {registerStep === "profile" && (
+              <form
+                className={styles.UserSignUpForm}
+                onSubmit={handleSetupProfile}
+              >
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Clinic Name*</label>
                   <input
                     type="text"
                     value={profile.clinicName}
-                    onChange={(e) => handleProfileChange('clinicName', e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.clinicName ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange("clinicName", e.target.value)
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.clinicName ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter clinic name"
                     disabled={loading}
                   />
-                  {errors.clinicName && <span className={styles.UserSignUpErrorText}>{errors.clinicName}</span>}
+                  {errors.clinicName && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.clinicName}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Doctor Name*</label>
                   <input
                     type="text"
                     value={profile.doctorName}
-                    onChange={(e) => handleProfileChange('doctorName', e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.doctorName ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange("doctorName", e.target.value)
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.doctorName ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter doctor name"
                     disabled={loading}
                   />
-                  {errors.doctorName && <span className={styles.UserSignUpErrorText}>{errors.doctorName}</span>}
+                  {errors.doctorName && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.doctorName}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Gender*</label>
                   <select
                     value={profile.gender}
-                    onChange={(e) => handleProfileChange('gender', e.target.value)}
-                    className={`${styles.UserSignUpInput} ${styles.UserSignUpSelect} ${errors.gender ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange("gender", e.target.value)
+                    }
+                    className={`${styles.UserSignUpInput} ${styles.UserSignUpSelect} ${errors.gender ? styles.UserSignUpInputError : ""}`}
                     disabled={loading}
                   >
                     <option value="">Select gender</option>
@@ -387,44 +439,71 @@ const UserSignUp = () => {
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                   </select>
-                  {errors.gender && <span className={styles.UserSignUpErrorText}>{errors.gender}</span>}
+                  {errors.gender && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.gender}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Phone*</label>
                   <input
                     type="tel"
                     value={profile.phone}
-                    onChange={(e) => handleProfileChange('phone', e.target.value.replace(/[^0-9]/g, '').slice(0, 10))}
-                    className={`${styles.UserSignUpInput} ${errors.phone ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange(
+                        "phone",
+                        e.target.value.replace(/[^0-9]/g, "").slice(0, 10),
+                      )
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.phone ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter 10-digit phone number"
                     maxLength="10"
                     disabled={loading}
                   />
-                  {errors.phone && <span className={styles.UserSignUpErrorText}>{errors.phone}</span>}
+                  {errors.phone && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.phone}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
-                  <label className={styles.UserSignUpLabel}>Registration Number*</label>
+                  <label className={styles.UserSignUpLabel}>
+                    Registration Number*
+                  </label>
                   <input
                     type="text"
                     value={profile.registrationNumber}
-                    onChange={(e) => handleProfileChange('registrationNumber', e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.registrationNumber ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange("registrationNumber", e.target.value)
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.registrationNumber ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter registration number"
                     disabled={loading}
                   />
-                  {errors.registrationNumber && <span className={styles.UserSignUpErrorText}>{errors.registrationNumber}</span>}
+                  {errors.registrationNumber && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.registrationNumber}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
                   <label className={styles.UserSignUpLabel}>Address*</label>
                   <input
                     type="text"
                     value={profile.address}
-                    onChange={(e) => handleProfileChange('address', e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.address ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange("address", e.target.value)
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.address ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter address"
                     disabled={loading}
                   />
-                  {errors.address && <span className={styles.UserSignUpErrorText}>{errors.address}</span>}
+                  {errors.address && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.address}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpFormRow}>
                   <div className={styles.UserSignUpFormGroup}>
@@ -432,44 +511,67 @@ const UserSignUp = () => {
                     <input
                       type="text"
                       value={profile.state}
-                      onChange={(e) => handleProfileChange('state', e.target.value)}
-                      className={`${styles.UserSignUpInput} ${errors.state ? styles.UserSignUpInputError : ''}`}
+                      onChange={(e) =>
+                        handleProfileChange("state", e.target.value)
+                      }
+                      className={`${styles.UserSignUpInput} ${errors.state ? styles.UserSignUpInputError : ""}`}
                       placeholder="Enter state"
                       disabled={loading}
                     />
-                    {errors.state && <span className={styles.UserSignUpErrorText}>{errors.state}</span>}
+                    {errors.state && (
+                      <span className={styles.UserSignUpErrorText}>
+                        {errors.state}
+                      </span>
+                    )}
                   </div>
                   <div className={styles.UserSignUpFormGroup}>
                     <label className={styles.UserSignUpLabel}>City*</label>
                     <input
                       type="text"
                       value={profile.city}
-                      onChange={(e) => handleProfileChange('city', e.target.value)}
-                      className={`${styles.UserSignUpInput} ${errors.city ? styles.UserSignUpInputError : ''}`}
+                      onChange={(e) =>
+                        handleProfileChange("city", e.target.value)
+                      }
+                      className={`${styles.UserSignUpInput} ${errors.city ? styles.UserSignUpInputError : ""}`}
                       placeholder="Enter city"
                       disabled={loading}
                     />
-                    {errors.city && <span className={styles.UserSignUpErrorText}>{errors.city}</span>}
+                    {errors.city && (
+                      <span className={styles.UserSignUpErrorText}>
+                        {errors.city}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className={styles.UserSignUpFormGroup}>
-                  <label className={styles.UserSignUpLabel}>Default Consultation Fee*</label>
+                  <label className={styles.UserSignUpLabel}>
+                    Default Consultation Fee
+                  </label>
                   <input
                     type="number"
                     value={profile.defaultConsultationFee}
-                    onChange={(e) => handleProfileChange('defaultConsultationFee', e.target.value)}
-                    className={`${styles.UserSignUpInput} ${errors.defaultConsultationFee ? styles.UserSignUpInputError : ''}`}
+                    onChange={(e) =>
+                      handleProfileChange(
+                        "defaultConsultationFee",
+                        e.target.value,
+                      )
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.defaultConsultationFee ? styles.UserSignUpInputError : ""}`}
                     placeholder="Enter fee amount"
                     min="0"
                     disabled={loading}
                   />
-                  {errors.defaultConsultationFee && <span className={styles.UserSignUpErrorText}>{errors.defaultConsultationFee}</span>}
+                  {errors.defaultConsultationFee && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.defaultConsultationFee}
+                    </span>
+                  )}
                 </div>
                 <div className={styles.UserSignUpButtonRow}>
                   <button
                     type="button"
                     onClick={() => {
-                      setRegisterStep('otp');
+                      setRegisterStep("otp");
                       setErrors({});
                     }}
                     className={styles.UserSignUpBackButton}
@@ -482,7 +584,7 @@ const UserSignUp = () => {
                     className={styles.UserSignUpButton}
                     disabled={loading}
                   >
-                    {loading ? 'Submitting...' : 'Complete Registration'}
+                    {loading ? "Submitting..." : "Complete Registration"}
                   </button>
                 </div>
               </form>

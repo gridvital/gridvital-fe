@@ -8,3 +8,7 @@ export const patientQrRegister = (payload) => {
 export const clinicDetailPublic = (clinicDisplayId) => {
   return getRequest(`${API_ROUTES.CLINIC_DETAILS_PUBLIC}/${clinicDisplayId}`);
 };
+
+export const patientCurrentTokenCheck = (payload) => {
+  return postRequest(API_ROUTES.PATIENT_CURRENT_TOKEN_CHECK, payload);
+};

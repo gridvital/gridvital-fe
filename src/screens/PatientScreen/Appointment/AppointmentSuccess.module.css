@@ -1,0 +1,420 @@
+.success_wrapper {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ecfdf5 0%, #F8FAFC 100%);
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.success_container {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 0 24px;
+}
+
+/* ---------- HEADER ---------- */
+
+.success_logo {
+  height: 31px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ---------- SUCCESS BADGE ---------- */
+
+.success_badgeWrapper {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.success_badgeGlow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
+  animation: success_pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes success_pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.success_badgeIcon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #059669);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+  animation: success_bounceIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes success_bounceIn {
+  0% { transform: scale(0) rotate(-30deg); opacity: 0; }
+  60% { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ---------- TOKEN WIDGET ---------- */
+
+.success_tokenWidget {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 40px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+  animation: success_slideUp 0.5s ease;
+}
+
+.success_tokenLabel {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0 0 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.success_tokenNumber {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -3px;
+}
+
+.success_tokenStatusRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.success_statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.success_statusPill_waiting {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.success_statusPill_inProgress {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.success_statusPill_completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.success_statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.success_statusDot_waiting {
+  background: #F59E0B;
+  animation: success_pulse 1.5s ease-in-out infinite;
+}
+
+.success_statusDot_inProgress {
+  background: #3b82f6;
+  animation: success_pulse 1s ease-in-out infinite;
+}
+
+.success_statusDot_completed {
+  background: #10b981;
+}
+
+@keyframes success_pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes success_slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- QUEUE INFO CARD ---------- */
+
+.success_queueCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+}
+
+.success_queueHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.success_queueTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.success_queuePosition {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1;
+}
+
+.success_queueSubtext {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0 0 14px;
+}
+
+.success_aheadTokens {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.success_aheadLabel {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.success_aheadPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #e2e8f0;
+}
+
+.success_emptyQueue {
+  font-size: 13px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.success_queueDivider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 14px 0;
+}
+
+.success_clinicRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.success_clinicIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.success_clinicInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.success_clinicName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.success_patientName {
+  font-size: 12px;
+  color: #64748B;
+  margin: 2px 0 0;
+}
+
+/* ---------- ACTIONS ---------- */
+
+.success_actions {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.success_refreshBtn {
+  height: 48px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.success_refreshBtn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.success_refreshBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.success_refreshIcon {
+  transition: transform 0.3s ease;
+}
+
+.success_refreshIcon_spinning {
+  animation: success_spin 0.8s linear infinite;
+}
+
+@keyframes success_spin {
+  to { transform: rotate(360deg); }
+}
+
+.success_refreshText {
+  font-size: 12px;
+  color: #94a3b8;
+  text-align: center;
+  margin: 0;
+}
+
+/* ---------- LOADING ---------- */
+
+.success_loadingScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+}
+
+.success_loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: success_spin 0.8s linear infinite;
+}
+
+.success_loadingText {
+  color: #64748B;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ---------- ERROR ---------- */
+
+.success_errorScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.success_errorIcon {
+  color: #ef4444;
+}
+
+.success_errorTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.success_errorMessage {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.success_errorBtn {
+  height: 46px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 10px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 8px;
+}
+
+.success_errorBtn:hover {
+  background: #0369a1;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (min-width: 640px) {
+  .success_wrapper {
+    padding: 32px;
+  }
+
+  .success_logo {
+    height: 32px;
+  }
+
+  .success_tokenNumber {
+    font-size: 5rem;
+  }
+}

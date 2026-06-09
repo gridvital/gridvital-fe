@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { clinicDetailPublic, patientQrRegister } from '../../../services/apis/patient.service';
 import { useCustomToast } from '../../../components/customToast/customToast';
+import { QrCode, RefreshCw } from 'lucide-react';
 import styles from './Appointment.module.css';
 import gridVitalLogo from "../../../assets/images/logos/GridVitalLogo.png"
 
@@ -16,6 +17,7 @@ const initialForm = {
 
 const PatientAppointment = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const clinicId = searchParams.get('clinicId');
 
   const [stage, setStage] = useState('loading');
@@ -23,7 +25,6 @@ const PatientAppointment = () => {
   const [form, setForm] = useState(initialForm);
   const [consentChecked, setConsentChecked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [tokenData, setTokenData] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const { showToast, ToastComponent } = useCustomToast();
@@ -42,7 +43,7 @@ const PatientAppointment = () => {
 
   useEffect(() => {
     if (!clinicId) {
-      setStage('form');
+      setStage('no_clinic');
       return;
     }
     (async () => {
@@ -96,8 +97,7 @@ const PatientAppointment = () => {
         isConsent: 1,
       });
       if (res?.data) {
-        setTokenData(res.data);
-        setStage('success');
+        navigate('/appointment-success?tokenId=' + res.data.id + '&clinicDisplayId=' + clinicId);
       } else if (res?.message) {
         showToast('error', res.message);
       } else {
@@ -108,7 +108,7 @@ const PatientAppointment = () => {
     } finally {
       setSubmitting(false);
     }
-  }, [form, clinicId, consentChecked]);
+  }, [form, clinicId, consentChecked, navigate, showToast]);
 
   const handleConsent = () => {
     setConsentChecked(true);
@@ -131,6 +131,33 @@ const PatientAppointment = () => {
           <div className={styles.PatientAppointment_loadingScreen}>
             <div className={styles.PatientAppointment_loader} />
             <p className={styles.PatientAppointment_loadingText}>Loading clinic details...</p>
+          </div>
+        )}
+
+        {stage === 'no_clinic' && (
+          <div className={styles.PatientAppointment_noClinicScreen}>
+            <header className={styles.PatientAppointment_header}>
+              <img src={gridVitalLogo} alt="GridVital" className={styles.PatientAppointment_logo} />
+            </header>
+
+            <div className={styles.PatientAppointment_noClinicIconWrap}>
+              <QrCode size={42} className={styles.PatientAppointment_noClinicIcon} />
+            </div>
+
+            <h3 className={styles.PatientAppointment_noClinicTitle}>Invalid QR Code</h3>
+
+            <p className={styles.PatientAppointment_noClinicMessage}>
+              The appointment link is missing clinic information. Please scan the QR code again
+              or contact the clinic to get a valid link.
+            </p>
+
+            <button
+              className={styles.PatientAppointment_noClinicBtn}
+              onClick={() => window.location.reload()}
+            >
+              <RefreshCw size={18} />
+              Try Again
+            </button>
           </div>
         )}
 
@@ -337,39 +364,6 @@ const PatientAppointment = () => {
           </>
         )}
 
-        {stage === 'success' && tokenData && (
-          <div className={styles.PatientAppointment_successScreen}>
-            <div className={styles.PatientAppointment_successBadge}>✓</div>
-
-            <div className={styles.PatientAppointment_tokenWidget}>
-              <p className={styles.PatientAppointment_tokenLabel}>Your Token Number</p>
-              <div className={styles.PatientAppointment_tokenNumber}>
-                {tokenData.tokenNumber}
-              </div>
-              <span className={styles.PatientAppointment_tokenStatus}>
-                <span className={styles.PatientAppointment_statusDot} />
-                Waiting
-              </span>
-            </div>
-
-            <div className={styles.PatientAppointment_receiptCard}>
-              <h4 className={styles.PatientAppointment_receiptTitle}>Patient Pass</h4>
-              <div className={styles.PatientAppointment_receiptRow}>
-                <span className={styles.PatientAppointment_receiptLabel}>Name</span>
-                <span className={styles.PatientAppointment_receiptValue}>{tokenData.name || form.name}</span>
-              </div>
-              <div className={styles.PatientAppointment_receiptRow}>
-                <span className={styles.PatientAppointment_receiptLabel}>Contact</span>
-                <span className={styles.PatientAppointment_receiptValue}>{tokenData.phone || form.phone}</span>
-              </div>
-            </div>
-
-            <p className={styles.PatientAppointment_successMessage}>
-              Aapka token number generate ho gaya hai. Kripya waiting area me apni bari ka
-              intezar karein. Screen refresh karne ki zaroorat nahi hai.
-            </p>
-          </div>
-        )}
       </div>
       {ToastComponent}
     </div>

@@ -551,6 +551,86 @@
   margin: 0;
 }
 
+/* ---------- NO CLINIC ---------- */
+
+.PatientAppointment_noClinicScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  animation: PatientAppointment_noClinicFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes PatientAppointment_noClinicFadeIn {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.PatientAppointment_noClinicIconWrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
+  animation: PatientAppointment_noClinicFloat 3s ease-in-out infinite;
+}
+
+@keyframes PatientAppointment_noClinicFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.PatientAppointment_noClinicIcon {
+  color: #d97706;
+}
+
+.PatientAppointment_noClinicTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.PatientAppointment_noClinicMessage {
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0;
+}
+
+.PatientAppointment_noClinicBtn {
+  height: 48px;
+  padding: 0 32px;
+  border: none;
+  border-radius: 12px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PatientAppointment_noClinicBtn:hover {
+  background: #0369a1;
+}
+
+.PatientAppointment_noClinicBtn:active {
+  transform: scale(0.97);
+}
+
 /* ---------- TABLET / DESKTOP ---------- */
 
 @media (min-width: 640px) {

@@ -48,6 +48,7 @@ export const API_ROUTES = {
   // Patients related APIS-------
   PATIENT_QR_REGISTER: "/api/patient/qr-register",
   CLINIC_DETAILS_PUBLIC: "/api/clinic/public",
+  PATIENT_CURRENT_TOKEN_CHECK: "/api/patient/current-token",
 
 
   WALLET_BALANCE_WITH_BANK: "/api/wallet/wallet-balance",

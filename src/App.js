@@ -10,6 +10,7 @@ import Profile from "./screens/UserProfile/Profile";
 import ProtectedLayout from "./routes/ProtectedLayout";
 import MainDashboard from "./screens/MainDashboard/MainDashboard";
 import QRPatientAppointment from './screens/PatientScreen/Appointment/Appointment'
+import AppointmentSuccess from './screens/PatientScreen/Appointment/AppointmentSuccess'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/login" element={<UserLogin />} />
           <Route path="/register" element={<UserSignUp />} />
           <Route path="/book-appointment" element={<QRPatientAppointment />} />
+          <Route path="/appointment-success" element={<AppointmentSuccess />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>

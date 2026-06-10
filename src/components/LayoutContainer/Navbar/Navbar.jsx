@@ -92,7 +92,7 @@ const Navbar = () => {
               onClick={handleSkip}
               disabled={loading}
             >
-              <SkipForward size={18} />
+              <SkipForward size={15} />
               Skip
             </button>
             <button
@@ -104,7 +104,7 @@ const Navbar = () => {
               Next
             </button>
           </div>
-          <div
+          {/* <div
             className={styles.Navbar_profileAvatar}
             onClick={() => setIsProfileOpen((prev) => !prev)}
           >
@@ -122,7 +122,7 @@ const Navbar = () => {
                 Logout
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       {ToastComponent}

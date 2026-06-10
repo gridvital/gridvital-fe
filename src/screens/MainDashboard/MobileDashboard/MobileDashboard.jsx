@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Share2, Download, Printer } from 'lucide-react';
+import { Share2, Download, Printer, Clock, Minus } from 'lucide-react';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
-import { fetchDashboardData } from '../../../services/apis/dashboard.service';
+import { fetchDashboardData, fetchTodayPatients, currentConsulattionStatus } from '../../../services/apis/dashboard.service';
 import { selectRefreshTrigger } from '../../../store/dashboard/dashboard.selectors';
 import { QRCodeSVG } from 'qrcode.react';
 import LoadingDots from '../../../components/LoadingDots/LoadingDots';
+import TodayPatientsDetails from './TodayPatientsDetails';
 import styles from './MobileDashboard.module.css';
 
 const statusClassMap = {
@@ -21,6 +22,9 @@ const MobileDashboard = () => {
   const refreshTrigger = useSelector(selectRefreshTrigger);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [consultationStatus, setConsultationStatus] = useState(null);
+  const [patients, setPatients] = useState([]);
+  const [selectedTokenId, setSelectedTokenId] = useState(null);
   const qrRef = useRef(null);
 
   const qrUrl = data?.clinicDisplayId
@@ -87,8 +91,14 @@ const MobileDashboard = () => {
     (async () => {
       setLoading(true);
       try {
-        const res = await fetchDashboardData();
-        setData(res.data);
+        const [dashboardRes, patientsRes, statusRes] = await Promise.all([
+          fetchDashboardData(),
+          fetchTodayPatients(),
+          currentConsulattionStatus(),
+        ]);
+        setData(dashboardRes.data);
+        setPatients(patientsRes?.success && Array.isArray(patientsRes.data) ? patientsRes.data : []);
+        setConsultationStatus(statusRes?.success ? statusRes.data : null);
       } catch {
         // handle error silently
       } finally {
@@ -100,6 +110,53 @@ const MobileDashboard = () => {
   return (
     <LayoutContainer>
       <div className={styles.MobileDashboard_content}>
+        {consultationStatus && (
+          <div className={styles.MobileDashboard_consultationCard}>
+            <div className={styles.MobileDashboard_consultationCurrent}>
+              <div className={styles.MobileDashboard_consultationLabel}>
+                <span className={styles.MobileDashboard_consultationDot} />
+                Current
+              </div>
+              {consultationStatus.current ? (
+                <div className={styles.MobileDashboard_consultationPatient} onClick={() => setSelectedTokenId(consultationStatus.current.tokenId)}>
+                  <span className={styles.MobileDashboard_consultationToken}>
+                    #{consultationStatus.current.tokenNumber}
+                  </span>
+                  <span className={styles.MobileDashboard_consultationName}>
+                    {consultationStatus.current.patientName}
+                  </span>
+                </div>
+              ) : (
+                <div className={styles.MobileDashboard_consultationEmpty}>
+                  <Clock size={14} />
+                  <span>Not Started</span>
+                </div>
+              )}
+            </div>
+            <div className={styles.MobileDashboard_consultationDivider} />
+            <div className={styles.MobileDashboard_consultationNext}>
+              <div className={styles.MobileDashboard_consultationLabel}>
+                Next
+              </div>
+              {consultationStatus.next ? (
+                <div className={styles.MobileDashboard_consultationPatient} onClick={() => setSelectedTokenId(consultationStatus.next.tokenId)}>
+                  <span className={styles.MobileDashboard_consultationToken}>
+                    #{consultationStatus.next.tokenNumber}
+                  </span>
+                  <span className={styles.MobileDashboard_consultationName}>
+                    {consultationStatus.next.patientName}
+                  </span>
+                </div>
+              ) : (
+                <div className={styles.MobileDashboard_consultationEmpty}>
+                  <Minus size={14} />
+                  <span>No Next</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className={styles.MobileDashboard_metricsGrid}>
           <div className={styles.MobileDashboard_metricCard}>
             <span className={styles.MobileDashboard_metricLabel}>Live Token</span>
@@ -136,8 +193,8 @@ const MobileDashboard = () => {
 
         {activeTab === 'queue' && (
           <div className={styles.MobileDashboard_queueList}>
-            {data?.patients?.map(p => (
-              <div key={p.token} className={styles.MobileDashboard_patientCard}>
+            {patients.length > 0 ? patients.map(p => (
+              <div key={p.id} className={styles.MobileDashboard_patientCard} onClick={() => setSelectedTokenId(p.id)}>
                 <div className={styles.MobileDashboard_patientCardTop}>
                   <span className={styles.MobileDashboard_patientToken}>{p.token}</span>
                   <span className={`${styles.MobileDashboard_patientStatus} ${statusClassMap[p.status?.toLowerCase()] || styles.MobileDashboard_statusWaiting}`}>
@@ -151,7 +208,9 @@ const MobileDashboard = () => {
                   <span>{p.complaints}</span>
                 </div>
               </div>
-            ))}
+            )) : (
+              <div className={styles.MobileDashboard_emptyState}>No patients today</div>
+            )}
           </div>
         )}
 
@@ -192,6 +251,13 @@ const MobileDashboard = () => {
           </div>
         )}
       </div>
+
+      {selectedTokenId && (
+        <TodayPatientsDetails
+          tokenId={selectedTokenId}
+          onClose={() => setSelectedTokenId(null)}
+        />
+      )}
     </LayoutContainer>
   );
 };

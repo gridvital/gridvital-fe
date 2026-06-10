@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Share2, Download, Printer } from 'lucide-react';
+import { Share2, Download, Printer, Clock, Minus } from 'lucide-react';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
-import { fetchDashboardData } from '../../../services/apis/dashboard.service';
+import { fetchDashboardData, fetchTodayPatients, currentConsulattionStatus } from '../../../services/apis/dashboard.service';
 import { selectRefreshTrigger } from '../../../store/dashboard/dashboard.selectors';
 import { QRCodeSVG } from 'qrcode.react';
 import LoadingDots from '../../../components/LoadingDots/LoadingDots';
+import TodayPatientsDetails from '../MobileDashboard/TodayPatientsDetails';
 import styles from './DesktopDashboard.module.css';
 
 const statusClassMap = {
@@ -20,6 +21,9 @@ const DesktopDashboard = () => {
   const refreshTrigger = useSelector(selectRefreshTrigger);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [consultationStatus, setConsultationStatus] = useState(null);
+  const [patients, setPatients] = useState([]);
+  const [selectedTokenId, setSelectedTokenId] = useState(null);
   const qrRef = useRef(null);
 
   const qrUrl = data?.clinicDisplayId
@@ -86,8 +90,14 @@ const DesktopDashboard = () => {
     (async () => {
       setLoading(true);
       try {
-        const res = await fetchDashboardData();
-        setData(res.data);
+        const [dashboardRes, patientsRes, statusRes] = await Promise.all([
+          fetchDashboardData(),
+          fetchTodayPatients(),
+          currentConsulattionStatus(),
+        ]);
+        setData(dashboardRes.data);
+        setPatients(patientsRes?.success && Array.isArray(patientsRes.data) ? patientsRes.data : []);
+        setConsultationStatus(statusRes?.success ? statusRes.data : null);
       } catch {
         // handle error silently
       } finally {
@@ -99,6 +109,53 @@ const DesktopDashboard = () => {
   return (
     <LayoutContainer>
       <div className={styles.DesktopDashboard_panel}>
+        {consultationStatus && (
+          <div className={styles.DesktopDashboard_consultationCard}>
+            <div className={styles.DesktopDashboard_consultationCurrent}>
+              <div className={styles.DesktopDashboard_consultationLabel}>
+                <span className={styles.DesktopDashboard_consultationDot} />
+                Current
+              </div>
+              {consultationStatus.current ? (
+                <div className={styles.DesktopDashboard_consultationPatient} onClick={() => setSelectedTokenId(consultationStatus.current.tokenId)}>
+                  <span className={styles.DesktopDashboard_consultationToken}>
+                    #{consultationStatus.current.tokenNumber}
+                  </span>
+                  <span className={styles.DesktopDashboard_consultationName}>
+                    {consultationStatus.current.patientName}
+                  </span>
+                </div>
+              ) : (
+                <div className={styles.DesktopDashboard_consultationEmpty}>
+                  <Clock size={14} />
+                  <span>Not Started</span>
+                </div>
+              )}
+            </div>
+            <div className={styles.DesktopDashboard_consultationDivider} />
+            <div className={styles.DesktopDashboard_consultationNext}>
+              <div className={styles.DesktopDashboard_consultationLabel}>
+                Next
+              </div>
+              {consultationStatus.next ? (
+                <div className={styles.DesktopDashboard_consultationPatient} onClick={() => setSelectedTokenId(consultationStatus.next.tokenId)}>
+                  <span className={styles.DesktopDashboard_consultationToken}>
+                    #{consultationStatus.next.tokenNumber}
+                  </span>
+                  <span className={styles.DesktopDashboard_consultationName}>
+                    {consultationStatus.next.patientName}
+                  </span>
+                </div>
+              ) : (
+                <div className={styles.DesktopDashboard_consultationEmpty}>
+                  <Minus size={14} />
+                  <span>No Next</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className={styles.DesktopDashboard_metricsGrid}>
           <div className={styles.DesktopDashboard_metricCard}>
             <span className={styles.DesktopDashboard_metricLabel}>Live Token</span>
@@ -131,8 +188,8 @@ const DesktopDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.patients?.map(p => (
-                  <tr key={p.token}>
+                {patients.length > 0 ? patients.map(p => (
+                  <tr key={p.id} className={styles.DesktopDashboard_clickableRow} onClick={() => setSelectedTokenId(p.id)}>
                     <td className={styles.DesktopDashboard_tokenCell}>{p.token}</td>
                     <td>{p.name}</td>
                     <td>{p.phone}</td>
@@ -143,7 +200,11 @@ const DesktopDashboard = () => {
                       </span>
                     </td>
                   </tr>
-                ))}
+                )) : (
+                  <tr>
+                    <td colSpan={5} className={styles.DesktopDashboard_emptyRow}>No patients today</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -183,6 +244,13 @@ const DesktopDashboard = () => {
           </div>
         </div>
       </div>
+
+      {selectedTokenId && (
+        <TodayPatientsDetails
+          tokenId={selectedTokenId}
+          onClose={() => setSelectedTokenId(null)}
+        />
+      )}
     </LayoutContainer>
   );
 };

@@ -1,0 +1,287 @@
+.ClinicPatientsList_container {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_container {
+    padding: 28px 32px;
+    min-height: auto;
+    background: transparent;
+  }
+}
+
+.ClinicPatientsList_header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f8fafc;
+  padding: 16px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_header {
+    padding: 0 0 20px;
+    background: transparent;
+    position: static;
+  }
+}
+
+.ClinicPatientsList_title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_title {
+    font-size: 24px;
+  }
+}
+
+.ClinicPatientsList_searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ClinicPatientsList_searchIcon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.ClinicPatientsList_searchInput {
+  width: 100%;
+  padding: 12px 36px 12px 38px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ClinicPatientsList_searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.ClinicPatientsList_searchInput:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.ClinicPatientsList_clearBtn {
+  position: absolute;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.ClinicPatientsList_clearBtn:hover {
+  background: #e2e8f0;
+}
+
+.ClinicPatientsList_list {
+  flex: 1;
+  padding: 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_list {
+    padding: 0;
+    gap: 10px;
+  }
+}
+
+.ClinicPatientsList_card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.ClinicPatientsList_card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ClinicPatientsList_card:active {
+  background: #f8fafc;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_card {
+    padding: 16px 20px;
+    border-radius: 12px;
+  }
+}
+
+.ClinicPatientsList_cardLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ClinicPatientsList_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #0284C7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_avatar {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.ClinicPatientsList_cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ClinicPatientsList_cardName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+  .ClinicPatientsList_cardName {
+    font-size: 15px;
+  }
+}
+
+.ClinicPatientsList_cardPhone {
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ClinicPatientsList_cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ClinicPatientsList_cardMetaItem {
+  font-size: 11px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ClinicPatientsList_cardRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ClinicPatientsList_statusBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.ClinicPatientsList_status_waiting {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.ClinicPatientsList_status_completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.ClinicPatientsList_status_cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ClinicPatientsList_status_in-consultation,
+.ClinicPatientsList_status_in consultation {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.ClinicPatientsList_chevron {
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.ClinicPatientsList_sentinel {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.ClinicPatientsList_endText {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.ClinicPatientsList_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.ClinicPatientsList_emptyText {
+  font-size: 14px;
+  color: #94a3b8;
+  text-align: center;
+  margin: 0;
+}

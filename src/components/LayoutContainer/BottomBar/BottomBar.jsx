@@ -5,8 +5,8 @@ import styles from './BottomBar.module.css';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { id: 'patients', label: 'Patients', icon: ClipboardList, path: '/patient-logs' },
-  { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' },
+  { id: 'patients', label: 'Patients', icon: ClipboardList, path: '/patient-list' },
+  { id: 'settings', label: 'Profile', icon: Settings, path: '/Profile' },
 ];
 
 const BottomBar = () => {

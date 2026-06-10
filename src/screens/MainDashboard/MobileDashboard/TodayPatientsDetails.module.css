@@ -1,0 +1,348 @@
+.TodayPatientsDetails_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  animation: TodayPatientsDetails_fadeIn 0.2s ease;
+}
+
+@keyframes TodayPatientsDetails_fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes TodayPatientsDetails_slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes TodayPatientsDetails_scaleIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.TodayPatientsDetails_modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: TodayPatientsDetails_slideUp 0.3s ease;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+  .TodayPatientsDetails_overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .TodayPatientsDetails_modal {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    max-width: 90vw;
+    border-radius: 16px;
+    max-height: 80vh;
+    animation: TodayPatientsDetails_scaleIn 0.25s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.TodayPatientsDetails_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.TodayPatientsDetails_title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.TodayPatientsDetails_closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.TodayPatientsDetails_closeBtn:hover {
+  background: #e2e8f0;
+}
+
+.TodayPatientsDetails_loading {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.TodayPatientsDetails_error {
+  text-align: center;
+  color: #ef4444;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.TodayPatientsDetails_body {
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.TodayPatientsDetails_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+  gap: 12px;
+}
+
+.TodayPatientsDetails_row:last-child {
+  border-bottom: none;
+}
+
+.TodayPatientsDetails_label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.TodayPatientsDetails_value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.TodayPatientsDetails_sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.TodayPatientsDetails_paragraphRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.TodayPatientsDetails_paragraphRow:last-child {
+  border-bottom: none;
+}
+
+.TodayPatientsDetails_paragraph {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0F172A;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.TodayPatientsDetails_statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.TodayPatientsDetails_prescriptionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.TodayPatientsDetails_chevron {
+  color: #94a3b8;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.TodayPatientsDetails_chevronOpen {
+  transform: rotate(90deg);
+}
+
+.TodayPatientsDetails_prescriptionList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.TodayPatientsDetails_prescriptionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.TodayPatientsDetails_prescriptionText {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0F172A;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.TodayPatientsDetails_prescriptionDate {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.TodayPatientsDetails_formSection {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.TodayPatientsDetails_formTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.TodayPatientsDetails_fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.TodayPatientsDetails_fieldLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.TodayPatientsDetails_textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.TodayPatientsDetails_textarea:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.TodayPatientsDetails_textarea:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.TodayPatientsDetails_input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.TodayPatientsDetails_input:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.TodayPatientsDetails_input:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.TodayPatientsDetails_submitBtn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.TodayPatientsDetails_submitBtn:hover {
+  background: #0369a1;
+}
+
+.TodayPatientsDetails_submitBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.TodayPatientsDetails_submitError {
+  font-size: 12px;
+  color: #ef4444;
+  margin: 0;
+}
+
+.TodayPatientsDetails_submitSuccess {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #065f46;
+  background: #d1fae5;
+  padding: 10px 14px;
+  border-radius: 10px;
+}

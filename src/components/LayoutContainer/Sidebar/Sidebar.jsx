@@ -5,8 +5,8 @@ import styles from './Sidebar.module.css';
 
 const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { label: 'Patient Logs', icon: ClipboardList, path: '/patient-logs' },
-  { label: 'Settings', icon: Settings, path: '/settings' },
+  { label: 'Patient', icon: ClipboardList, path: '/patient-list' },
+  { label: 'Profile', icon: Settings, path: '/Profile' },
 ];
 
 const Sidebar = () => {

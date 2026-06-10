@@ -93,7 +93,7 @@ const PatientAppointment = () => {
         email: form.email.trim(),
         gender: form.gender,
         age: Number(form.age),
-        complaints: form.complaints.trim(),
+        chiefComplaints: form.complaints.trim(),
         isConsent: 1,
       });
       if (res?.success === true) {

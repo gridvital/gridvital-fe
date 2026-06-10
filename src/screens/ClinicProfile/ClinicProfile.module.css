@@ -1,0 +1,242 @@
+.ClinicProfile_container {
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_container {
+    padding: 28px 0;
+    min-height: auto;
+    background: transparent;
+  }
+}
+
+.ClinicProfile_header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f8fafc;
+  padding: 16px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_header {
+    background: transparent;
+    position: static;
+    padding: 0 0 24px;
+  }
+}
+
+.ClinicProfile_backBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #0F172A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.ClinicProfile_backBtn:hover {
+  background: #f1f5f9;
+}
+
+.ClinicProfile_title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.ClinicProfile_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+}
+
+.ClinicProfile_errorIcon {
+  color: #94a3b8;
+}
+
+.ClinicProfile_errorText {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.ClinicProfile_content {
+  padding: 0 16px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_content {
+    padding: 0;
+  }
+}
+
+.ClinicProfile_avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 16px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_avatarSection {
+    padding: 32px 24px;
+    border-radius: 14px;
+  }
+}
+
+.ClinicProfile_avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284C7, #0369a1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+}
+
+.ClinicProfile_doctorName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+  text-align: center;
+}
+
+.ClinicProfile_clinicName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+  text-align: center;
+}
+
+.ClinicProfile_clinicIdBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0284C7;
+  background: #eff6ff;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.ClinicProfile_card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_card {
+    border-radius: 14px;
+  }
+}
+
+.ClinicProfile_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  gap: 12px;
+}
+
+.ClinicProfile_row:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .ClinicProfile_row {
+    padding: 16px 20px;
+  }
+}
+
+.ClinicProfile_rowLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ClinicProfile_rowIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.ClinicProfile_rowLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.ClinicProfile_rowRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-align: right;
+}
+
+.ClinicProfile_rowValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ClinicProfile_badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ClinicProfile_badgeSuccess {
+  color: #22c55e;
+}

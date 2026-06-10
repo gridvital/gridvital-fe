@@ -11,6 +11,8 @@ import ProtectedLayout from "./routes/ProtectedLayout";
 import MainDashboard from "./screens/MainDashboard/MainDashboard";
 import QRPatientAppointment from './screens/PatientScreen/Appointment/Appointment'
 import AppointmentSuccess from './screens/PatientScreen/Appointment/AppointmentSuccess'
+import ClinicPatientsList from "./screens/ClinicPatients/ClinicPatientsList/ClinicPatientsList";
+import ClinicProfile from "./screens/ClinicProfile/ClinicProfile"
 
 const App = () => {
   return (
@@ -36,8 +38,9 @@ const App = () => {
         <Route element={<ProtectedRoute />}>
           <Route element={<ProtectedLayout />}>
             <Route path="/dashboard" element={<MainDashboard />} />
+            <Route path="/patient-list" element={<ClinicPatientsList />} />
             <Route path="/digitalGold/*" element={<DigitalGold />} />
-            <Route path="/Profile" element={<Profile />} />
+            <Route path="/Profile" element={<ClinicProfile />} />
           </Route>
         </Route>
 

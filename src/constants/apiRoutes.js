@@ -46,6 +46,7 @@ export const API_ROUTES = {
   PATIENT_ALL_DETAILS: "/api/clinic/patient-all-details",
   ADD_PRESCRIPTION: "/api/clinic/add-prescription",
   CLINIC_PROFILE: "/api/clinic/profile",
+  SUBSCRIPTION: "/api/clinic/subscription",
 
 
 

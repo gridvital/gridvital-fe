@@ -4,6 +4,8 @@ import { Share2, Download, Printer, Clock, Minus } from 'lucide-react';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
 import { fetchDashboardData, fetchTodayPatients, currentConsulattionStatus } from '../../../services/apis/dashboard.service';
 import { selectRefreshTrigger } from '../../../store/dashboard/dashboard.selectors';
+import useSubscription from '../../../hooks/useSubscription';
+import SubscriptionBanner from '../../../components/SubscriptionBanner/SubscriptionBanner';
 import { QRCodeSVG } from 'qrcode.react';
 import LoadingDots from '../../../components/LoadingDots/LoadingDots';
 import TodayPatientsDetails from '../MobileDashboard/TodayPatientsDetails';
@@ -25,6 +27,7 @@ const DesktopDashboard = () => {
   const [patients, setPatients] = useState([]);
   const [selectedTokenId, setSelectedTokenId] = useState(null);
   const qrRef = useRef(null);
+  const { subscription } = useSubscription();
 
   const qrUrl = data?.clinicDisplayId
     ? `https://gridvital.in/book-appointment?clinicId=${data.clinicDisplayId}`
@@ -109,6 +112,7 @@ const DesktopDashboard = () => {
   return (
     <LayoutContainer>
       <div className={styles.DesktopDashboard_panel}>
+        <SubscriptionBanner subscription={subscription} />
         {consultationStatus && (
           <div className={styles.DesktopDashboard_consultationCard}>
             <div className={styles.DesktopDashboard_consultationCurrent}>

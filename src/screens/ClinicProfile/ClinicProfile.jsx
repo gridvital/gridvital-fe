@@ -14,16 +14,25 @@ import {
   Calendar,
   BadgeCheck,
   AlertCircle,
+  CreditCard,
 } from 'lucide-react';
 import LayoutContainer from '../../components/LayoutContainer/LayoutContainer';
 import { fetchClinicProfile } from '../../services/apis/dashboard.service';
+import useSubscription from '../../hooks/useSubscription';
 import LoadingDots from '../../components/LoadingDots/LoadingDots';
 import styles from './ClinicProfile.module.css';
+
+const subTypeConfig = {
+  FREE_TRIAL: { label: 'Free Trial', className: 'ClinicProfile_subBadgeTrial' },
+  PAID_SUBSCRIBED: { label: 'Paid', className: 'ClinicProfile_subBadgePaid' },
+  EXPIRED: { label: 'Expired', className: 'ClinicProfile_subBadgeExpired' },
+};
 
 const ClinicProfile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { subscription } = useSubscription();
 
   useEffect(() => {
     (async () => {
@@ -49,6 +58,8 @@ const ClinicProfile = () => {
     });
   };
 
+  const subConfig = subscription ? subTypeConfig[subscription.subscriptionType] : null;
+
   const infoRows = profile
     ? [
         { icon: User, label: 'Doctor Name', value: profile.doctorName },
@@ -71,6 +82,26 @@ const ClinicProfile = () => {
           value: [profile.address, profile.city, profile.state].filter(Boolean).join(', ') || '-',
         },
         { icon: Calendar, label: 'Member Since', value: formatDate(profile.createdAt) },
+        ...(subscription
+          ? [
+              {
+                icon: CreditCard,
+                label: 'Subscription',
+                value: subConfig?.label || subscription.subscriptionType,
+                subBadge: subConfig?.className,
+              },
+              {
+                icon: Calendar,
+                label: 'Expires',
+                value: formatDate(subscription.subscriptionExpiresAt),
+              },
+              {
+                icon: AlertCircle,
+                label: 'Days Remaining',
+                value: subscription.daysRemaining + ' day' + (subscription.daysRemaining !== 1 ? 's' : ''),
+              },
+            ]
+          : []),
       ]
     : [];
 
@@ -110,7 +141,13 @@ const ClinicProfile = () => {
                     <span className={styles.ClinicProfile_rowLabel}>{row.label}</span>
                   </div>
                   <div className={styles.ClinicProfile_rowRight}>
-                    <span className={styles.ClinicProfile_rowValue}>{row.value}</span>
+                    {row.subBadge ? (
+                      <span className={`${styles.ClinicProfile_subBadge} ${styles[row.subBadge]}`}>
+                        {row.value}
+                      </span>
+                    ) : (
+                      <span className={styles.ClinicProfile_rowValue}>{row.value}</span>
+                    )}
                     {row.badge && (
                       <span
                         className={`${styles.ClinicProfile_badge} ${

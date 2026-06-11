@@ -37,6 +37,10 @@ export const fetchClinicProfile = () => {
   return getRequest(API_ROUTES.CLINIC_PROFILE);
 };
 
+export const fetchSubscription = () => {
+  return getRequest(API_ROUTES.SUBSCRIPTION);
+};
+
 export const currentConsulattionStatus = (payload) => {
   return getRequest(API_ROUTES.CURRENT_CONSULTATION_STATUS, payload);
 };

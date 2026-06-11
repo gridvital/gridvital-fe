@@ -1,0 +1,29 @@
+.OPSLoadingSpinner_fullPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.OPSLoadingSpinner_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.OPSLoadingSpinner_spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #0284C7;
+  border-radius: 50%;
+  animation: OPSLoadingSpinner_rotate 0.7s linear infinite;
+}
+
+@keyframes OPSLoadingSpinner_rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

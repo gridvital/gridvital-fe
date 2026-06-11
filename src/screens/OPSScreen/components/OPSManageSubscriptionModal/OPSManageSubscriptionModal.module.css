@@ -1,0 +1,181 @@
+.OPSManageSubscriptionModal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: OPSManageSubscriptionModal_fadeIn 0.2s ease;
+}
+
+@keyframes OPSManageSubscriptionModal_fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes OPSManageSubscriptionModal_slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.OPSManageSubscriptionModal_sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: OPSManageSubscriptionModal_slideUp 0.3s ease;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+  padding: 12px 20px 24px;
+}
+
+.OPSManageSubscriptionModal_handle {
+  width: 36px;
+  height: 4px;
+  background: #cbd5e1;
+  border-radius: 2px;
+  margin: 0 auto 12px;
+}
+
+.OPSManageSubscriptionModal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.OPSManageSubscriptionModal_title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.OPSManageSubscriptionModal_closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.OPSManageSubscriptionModal_closeBtn:hover {
+  background: #e2e8f0;
+}
+
+.OPSManageSubscriptionModal_form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.OPSManageSubscriptionModal_field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.OPSManageSubscriptionModal_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.OPSManageSubscriptionModal_label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.OPSManageSubscriptionModal_input,
+.OPSManageSubscriptionModal_select {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #0F172A;
+  font-family: inherit;
+  transition: border 0.2s;
+  box-sizing: border-box;
+}
+
+.OPSManageSubscriptionModal_input:focus,
+.OPSManageSubscriptionModal_select:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.OPSManageSubscriptionModal_inputError {
+  border-color: #ef4444;
+}
+
+.OPSManageSubscriptionModal_inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.OPSManageSubscriptionModal_fieldError {
+  font-size: 11px;
+  color: #ef4444;
+}
+
+.OPSManageSubscriptionModal_apiError {
+  padding: 10px 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #991b1b;
+  font-size: 13px;
+  text-align: center;
+}
+
+.OPSManageSubscriptionModal_submitBtn,
+.OPSManageSubscriptionModal_cancelBtn {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.OPSManageSubscriptionModal_submitBtn {
+  background: #0284C7;
+  color: #ffffff;
+  border: none;
+}
+
+.OPSManageSubscriptionModal_submitBtn:hover {
+  background: #0369a1;
+}
+
+.OPSManageSubscriptionModal_submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.OPSManageSubscriptionModal_cancelBtn {
+  background: transparent;
+  color: #64748b;
+  border: none;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.OPSManageSubscriptionModal_cancelBtn:hover {
+  color: #0F172A;
+}

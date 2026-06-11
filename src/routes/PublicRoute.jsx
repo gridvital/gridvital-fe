@@ -5,9 +5,9 @@ import { selectIsAuthenticated } from "../store/auth/auth.selectors";
 const PublicRoute = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
+  // if (isAuthenticated) {
+  //   return <Navigate to="/dashboard" replace />;
+  // }
 
   return <Outlet />;
 };

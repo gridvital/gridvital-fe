@@ -1,0 +1,188 @@
+.OPSClinicsList_container {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding-bottom: 24px;
+}
+
+.OPSClinicsList_rmBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #0284C7;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.OPSClinicsList_rmBtn:hover {
+  background: #eff6ff;
+}
+
+.OPSClinicsList_searchWrap {
+  position: relative;
+  margin: 12px 16px;
+}
+
+.OPSClinicsList_searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.OPSClinicsList_searchInput {
+  width: 100%;
+  padding: 12px 36px 12px 40px;
+  font-size: 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  outline: none;
+  background: #ffffff;
+  color: #0F172A;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.OPSClinicsList_searchInput:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.OPSClinicsList_searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.OPSClinicsList_clearBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+.OPSClinicsList_clearBtn:hover {
+  color: #64748b;
+}
+
+.OPSClinicsList_results {
+  padding: 0 16px 8px;
+}
+
+.OPSClinicsList_resultCount {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.OPSClinicsList_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.OPSClinicsList_loader {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.OPSClinicsList_spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #0284C7;
+  border-radius: 50%;
+  animation: OPSClinicsList_rotate 0.7s linear infinite;
+}
+
+@keyframes OPSClinicsList_rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.OPSClinicsList_empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+}
+
+.OPSClinicsList_emptyIcon {
+  color: #cbd5e1;
+}
+
+.OPSClinicsList_emptyText {
+  font-size: 15px;
+  color: #94a3b8;
+  margin: 0;
+  text-align: center;
+}
+
+.OPSClinicsList_clearSearchBtn {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0284C7;
+  background: #eff6ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.OPSClinicsList_clearSearchBtn:hover {
+  background: #dbeafe;
+}
+
+.OPSClinicsList_pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px;
+}
+
+.OPSClinicsList_pageBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.OPSClinicsList_pageBtn:hover {
+  border-color: #0284C7;
+  color: #0284C7;
+}
+
+.OPSClinicsList_pageBtnActive {
+  background: #0284C7;
+  color: #ffffff;
+  border-color: #0284C7;
+}

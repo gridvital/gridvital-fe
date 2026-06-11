@@ -1,0 +1,141 @@
+.OPSLogin_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0F172A 0%, #1e293b 100%);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.OPSLogin_card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 28px 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.OPSLogin_logoSection {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.OPSLogin_logo {
+  display: block;
+  width: 160px;
+  margin: 0 auto 16px;
+}
+
+.OPSLogin_subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.OPSLogin_form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.OPSLogin_field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.OPSLogin_label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.OPSLogin_input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  background: #f8fafc;
+  color: #0F172A;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.OPSLogin_input:focus {
+  border-color: #0284C7;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.OPSLogin_input::placeholder {
+  color: #94a3b8;
+}
+
+.OPSLogin_passwordWrap {
+  position: relative;
+}
+
+.OPSLogin_eyeBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+}
+
+.OPSLogin_eyeBtn:hover {
+  color: #64748b;
+}
+
+.OPSLogin_button {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #0284C7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  margin-top: 4px;
+}
+
+.OPSLogin_button:hover {
+  background: #0369a1;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+}
+
+.OPSLogin_button:active {
+  transform: scale(0.98);
+}
+
+.OPSLogin_button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 480px) {
+  .OPSLogin_card {
+    padding: 28px 20px 24px;
+    border-radius: 16px;
+  }
+
+  .OPSLogin_logoText {
+    font-size: 20px;
+  }
+}

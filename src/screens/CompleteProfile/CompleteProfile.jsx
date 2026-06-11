@@ -21,6 +21,7 @@ const CompleteProfile = () => {
   const [profile, setProfile] = useState({
     clinicName: "",
     doctorName: "",
+    specialization: "",
     gender: "",
     phone: "",
     registrationNumber: "",
@@ -52,6 +53,8 @@ const CompleteProfile = () => {
       newErrors.clinicName = "Clinic name is required";
     if (!profile.doctorName.trim())
       newErrors.doctorName = "Doctor name is required";
+    if (!profile.specialization.trim())
+      newErrors.specialization = "Specialization is required";
     if (!profile.gender) newErrors.gender = "Gender is required";
     if (!profile.phone.trim() || !/^[0-9]{10}$/.test(profile.phone))
       newErrors.phone = "Valid 10-digit phone is required";
@@ -161,6 +164,25 @@ const CompleteProfile = () => {
                 {errors.doctorName && (
                   <span className={styles.CompleteProfile_errorText}>
                     {errors.doctorName}
+                  </span>
+                )}
+              </div>
+
+              <div className={styles.CompleteProfile_formGroup}>
+                <label className={styles.CompleteProfile_label}>Specialization*</label>
+                <input
+                  type="text"
+                  value={profile.specialization}
+                  onChange={(e) =>
+                    handleChange("specialization", e.target.value)
+                  }
+                  className={`${styles.CompleteProfile_input} ${errors.specialization ? styles.CompleteProfile_inputError : ""}`}
+                  placeholder="e.g. Cardiologist, Dermatologist"
+                  disabled={loading}
+                />
+                {errors.specialization && (
+                  <span className={styles.CompleteProfile_errorText}>
+                    {errors.specialization}
                   </span>
                 )}
               </div>

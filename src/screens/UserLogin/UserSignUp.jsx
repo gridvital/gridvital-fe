@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { setAuthFromLogin } from "../../store/auth/auth.slice";
 import styles from "./UserSignUp.module.css";
 import {
   userRegister,
@@ -13,6 +15,7 @@ import ClinicConsentModal from "./ClinicConsentModal";
 
 const UserSignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [registerStep, setRegisterStep] = useState("credentials");
   const [email, setEmail] = useState("");
@@ -30,6 +33,7 @@ const UserSignUp = () => {
   const [profile, setProfile] = useState({
     clinicName: "",
     doctorName: "",
+    specialization: "",
     gender: "",
     phone: "",
     registrationNumber: "",
@@ -127,6 +131,7 @@ const UserSignUp = () => {
 
       if (response?.success === true) {
         toast.success("Email verified successfully");
+        dispatch(setAuthFromLogin({ authToken: response.token }));
         setRegisterStep("profile");
       } else {
         toast.error(response?.message || "OTP verification failed");
@@ -156,6 +161,8 @@ const UserSignUp = () => {
       newErrors.clinicName = "Clinic name is required";
     if (!profile.doctorName.trim())
       newErrors.doctorName = "Doctor name is required";
+    if (!profile.specialization.trim())
+      newErrors.specialization = "Specialization is required";
     if (!profile.gender) newErrors.gender = "Gender is required";
     if (!profile.phone.trim() || !/^[0-9]{10}$/.test(profile.phone))
       newErrors.phone = "Valid 10-digit phone is required";
@@ -426,6 +433,24 @@ const UserSignUp = () => {
                   {errors.doctorName && (
                     <span className={styles.UserSignUpErrorText}>
                       {errors.doctorName}
+                    </span>
+                  )}
+                </div>
+                <div className={styles.UserSignUpFormGroup}>
+                  <label className={styles.UserSignUpLabel}>Specialization*</label>
+                  <input
+                    type="text"
+                    value={profile.specialization}
+                    onChange={(e) =>
+                      handleProfileChange("specialization", e.target.value)
+                    }
+                    className={`${styles.UserSignUpInput} ${errors.specialization ? styles.UserSignUpInputError : ""}`}
+                    placeholder="e.g. Cardiologist, Dermatologist"
+                    disabled={loading}
+                  />
+                  {errors.specialization && (
+                    <span className={styles.UserSignUpErrorText}>
+                      {errors.specialization}
                     </span>
                   )}
                 </div>

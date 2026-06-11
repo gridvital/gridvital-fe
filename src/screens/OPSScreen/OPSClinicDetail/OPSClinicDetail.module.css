@@ -1,0 +1,409 @@
+.OPSClinicDetail_container {
+  min-height: 100vh;
+  background: #f8fafc;
+  animation: OPSClinicDetail_slideIn 0.3s ease;
+}
+
+@keyframes OPSClinicDetail_slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.OPSClinicDetail_scroll {
+  padding: 0 16px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.OPSClinicDetail_error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+  color: #94a3b8;
+}
+
+.OPSClinicDetail_error p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.OPSClinicDetail_section {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.OPSClinicDetail_profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.OPSClinicDetail_profileInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.OPSClinicDetail_doctorName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 2px 0;
+}
+
+.OPSClinicDetail_clinicName {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 6px 0;
+}
+
+.OPSClinicDetail_idBadge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0284C7;
+  background: #eff6ff;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-family: monospace;
+}
+
+.OPSClinicDetail_statusWrap {
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_activeBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.OPSClinicDetail_inactiveBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.OPSClinicDetail_infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 4px 0;
+}
+
+.OPSClinicDetail_infoItem,
+.OPSClinicDetail_infoItemFull {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.OPSClinicDetail_infoItemFull {
+  grid-column: 1 / -1;
+}
+
+.OPSClinicDetail_infoItem > div,
+.OPSClinicDetail_infoItemFull > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.OPSClinicDetail_infoIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_infoLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.OPSClinicDetail_infoValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  word-break: break-word;
+}
+
+.OPSClinicDetail_verifiedIcon {
+  color: #22c55e;
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_unverifiedIcon {
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  padding: 16px;
+}
+
+.OPSClinicDetail_sectionHeader span {
+  flex: 1;
+}
+
+.OPSClinicDetail_subContent {
+  padding: 0 16px 16px;
+}
+
+.OPSClinicDetail_subTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.OPSClinicDetail_manageBtn {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0284C7;
+  background: #eff6ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.OPSClinicDetail_manageBtn:hover {
+  background: #dbeafe;
+}
+
+.OPSClinicDetail_progressWrap {
+  margin-bottom: 16px;
+}
+
+.OPSClinicDetail_progressBar {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.OPSClinicDetail_progressFill {
+  height: 100%;
+  background: #0284C7;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.OPSClinicDetail_progressWarning {
+  background: #f59e0b;
+}
+
+.OPSClinicDetail_progressExpired {
+  background: #ef4444;
+}
+
+.OPSClinicDetail_progressLabel {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.OPSClinicDetail_subGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.OPSClinicDetail_subItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.OPSClinicDetail_subItem > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.OPSClinicDetail_subIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_subLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.OPSClinicDetail_subValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.OPSClinicDetail_daysWarning {
+  color: #ef4444;
+}
+
+.OPSClinicDetail_otpHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+}
+
+.OPSClinicDetail_otpHeader:hover {
+  background: #f8fafc;
+}
+
+.OPSClinicDetail_otpContent {
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.OPSClinicDetail_otpCode {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0F172A;
+  font-family: "Courier New", monospace;
+  letter-spacing: 6px;
+  text-align: center;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px dashed #e2e8f0;
+}
+
+.OPSClinicDetail_otpMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.OPSClinicDetail_dangerZone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.OPSClinicDetail_dangerIcon {
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_dangerZone > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.OPSClinicDetail_dangerTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #991b1b;
+  margin: 0 0 2px 0;
+}
+
+.OPSClinicDetail_dangerDesc {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.OPSClinicDetail_deleteBtn {
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.OPSClinicDetail_deleteBtn:hover {
+  background: #dc2626;
+}
+
+@media (min-width: 768px) {
+  .OPSClinicDetail_scroll {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px 100px;
+  }
+
+  .OPSClinicDetail_infoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .OPSClinicDetail_infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .OPSClinicDetail_subGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .OPSClinicDetail_profileHeader {
+    flex-wrap: wrap;
+  }
+
+  .OPSClinicDetail_dangerZone {
+    flex-wrap: wrap;
+  }
+
+  .OPSClinicDetail_deleteBtn {
+    width: 100%;
+  }
+}

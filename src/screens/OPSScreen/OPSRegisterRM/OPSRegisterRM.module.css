@@ -1,0 +1,221 @@
+.OPSRegisterRM_container {
+  min-height: 100vh;
+  background: #f8fafc;
+  animation: OPSRegisterRM_slideIn 0.3s ease;
+}
+
+@keyframes OPSRegisterRM_slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.OPSRegisterRM_scroll {
+  padding: 20px 16px 100px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.OPSRegisterRM_form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.OPSRegisterRM_field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.OPSRegisterRM_label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.OPSRegisterRM_input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #0F172A;
+  font-family: inherit;
+  transition: border 0.2s;
+  box-sizing: border-box;
+}
+
+.OPSRegisterRM_input:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.OPSRegisterRM_inputError {
+  border-color: #ef4444;
+}
+
+.OPSRegisterRM_inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.OPSRegisterRM_input::placeholder {
+  color: #94a3b8;
+}
+
+.OPSRegisterRM_errorText {
+  font-size: 11px;
+  color: #ef4444;
+}
+
+.OPSRegisterRM_passwordWrap {
+  position: relative;
+}
+
+.OPSRegisterRM_eyeBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+}
+
+.OPSRegisterRM_eyeBtn:hover {
+  color: #64748b;
+}
+
+.OPSRegisterRM_submitBtn {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #0284C7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  margin-top: 4px;
+}
+
+.OPSRegisterRM_submitBtn:hover {
+  background: #0369a1;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+}
+
+.OPSRegisterRM_submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.OPSRegisterRM_success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 0;
+}
+
+.OPSRegisterRM_checkIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #d1fae5;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.OPSRegisterRM_successTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.OPSRegisterRM_resultCard {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.OPSRegisterRM_resultRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.OPSRegisterRM_resultRow:last-child {
+  border-bottom: none;
+}
+
+.OPSRegisterRM_resultLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.OPSRegisterRM_resultValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.OPSRegisterRM_copyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0284C7;
+  background: #eff6ff;
+  border: 1.5px solid #0284C7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.OPSRegisterRM_copyBtn:hover {
+  background: #dbeafe;
+}
+
+.OPSRegisterRM_backBtn {
+  width: 100%;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.OPSRegisterRM_backBtn:hover {
+  background: #f8fafc;
+}
+
+@media (max-width: 480px) {
+  .OPSRegisterRM_scroll {
+    padding: 16px 16px 100px;
+  }
+}

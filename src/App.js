@@ -14,6 +14,10 @@ import AppointmentSuccess from './screens/PatientScreen/Appointment/AppointmentS
 import ClinicPatientsList from "./screens/ClinicPatients/ClinicPatientsList/ClinicPatientsList";
 import ClinicProfile from "./screens/ClinicProfile/ClinicProfile"
 import CompleteProfile from "./screens/CompleteProfile/CompleteProfile"
+import OPSLogin from "./screens/OPSScreen/OPSLogin/OPSLogin";
+import OPSClinicsList from "./screens/OPSScreen/OPSClinicsList/OPSClinicsList";
+import OPSClinicDetail from "./screens/OPSScreen/OPSClinicDetail/OPSClinicDetail";
+import OPSRegisterRM from "./screens/OPSScreen/OPSRegisterRM/OPSRegisterRM";
 
 const App = () => {
   return (
@@ -44,6 +48,13 @@ const App = () => {
             <Route path="/digitalGold/*" element={<DigitalGold />} />
             <Route path="/Profile" element={<ClinicProfile />} />
           </Route>
+        </Route>
+
+        <Route path="/ops/login" element={<OPSLogin />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/ops/clinics" element={<OPSClinicsList />} />
+          <Route path="/ops/clinics/:id" element={<OPSClinicDetail />} />
+          <Route path="/ops/register-rm" element={<OPSRegisterRM />} />
         </Route>
 
         <Route path="*" element={<UserLogin />} />

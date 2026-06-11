@@ -1,12 +1,22 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, ClipboardList, Settings } from 'lucide-react';
-import styles from './BottomBar.module.css';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LayoutDashboard, ClipboardList, CircleUser } from "lucide-react";
+import styles from "./BottomBar.module.css";
 
 const navItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { id: 'patients', label: 'Patients', icon: ClipboardList, path: '/patient-list' },
-  { id: 'settings', label: 'Profile', icon: Settings, path: '/Profile' },
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    path: "/dashboard",
+  },
+  {
+    id: "patients",
+    label: "Patients",
+    icon: ClipboardList,
+    path: "/patient-list",
+  },
+  { id: "settings", label: "Profile", icon: CircleUser, path: "/Profile" },
 ];
 
 const BottomBar = () => {
@@ -23,7 +33,7 @@ const BottomBar = () => {
           return (
             <div
               key={item.id}
-              className={`${styles.BottomBar_item} ${isActive ? styles.BottomBar_itemActive : ''}`}
+              className={`${styles.BottomBar_item} ${isActive ? styles.BottomBar_itemActive : ""}`}
               onClick={() => navigate(item.path)}
             >
               <span className={styles.BottomBar_icon}>

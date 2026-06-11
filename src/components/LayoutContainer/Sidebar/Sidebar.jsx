@@ -1,20 +1,30 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, ClipboardList, Settings, LogOut } from 'lucide-react';
-import styles from './Sidebar.module.css';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  LayoutDashboard,
+  ClipboardList,
+  CircleUser,
+  LogOut,
+} from "lucide-react";
+import { logout } from "../../../store/auth/auth.slice";
+import styles from "./Sidebar.module.css";
 
 const navItems = [
-  { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { label: 'Patient', icon: ClipboardList, path: '/patient-list' },
-  { label: 'Profile', icon: Settings, path: '/Profile' },
+  { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+  { label: "Patient", icon: ClipboardList, path: "/patient-list" },
+  { label: "Profile", icon: CircleUser, path: "/Profile" },
 ];
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    navigate('/login');
+    dispatch(logout());
+    localStorage.removeItem("persist:auth");
+    navigate("/login");
   };
 
   const isActive = (path) => location.pathname === path;
@@ -28,7 +38,7 @@ const Sidebar = () => {
           return (
             <div
               key={item.label}
-              className={`${styles.Sidebar_navItem} ${isActive(item.path) ? styles.Sidebar_navItemActive : ''}`}
+              className={`${styles.Sidebar_navItem} ${isActive(item.path) ? styles.Sidebar_navItemActive : ""}`}
               onClick={() => navigate(item.path)}
             >
               <Icon size={18} />

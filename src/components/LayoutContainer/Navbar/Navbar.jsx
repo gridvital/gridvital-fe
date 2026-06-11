@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ArrowRightCircle, SkipForward } from "lucide-react";
+import { ArrowRightCircle, LogOut, SkipForward } from "lucide-react";
 import gridVitalLogo from "../../../assets/images/logos/GridVitalLogo.png";
 import { logout } from "../../../store/auth/auth.slice";
-import { selectUserName } from "../../../store/auth/auth.selectors";
 import { callSkipNextPatient } from "../../../services/apis/dashboard.service";
 import { triggerRefresh } from "../../../store/dashboard/dashboard.slice";
 import { useCustomToast } from "../../customToast/customToast";
@@ -13,20 +12,10 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userName = useSelector(selectUserName);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const dropdownRef = useRef(null);
   const { showToast, ToastComponent } = useCustomToast();
-
-  const getInitials = (name) => {
-    if (!name) return "👤";
-    const parts = name.trim().split(" ");
-    if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
-    return (
-      parts[0].charAt(0) + parts[parts.length - 1].charAt(0)
-    ).toUpperCase();
-  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -104,25 +93,21 @@ const Navbar = () => {
               Next
             </button>
           </div>
-          {/* <div
+          <div
             className={styles.Navbar_profileAvatar}
             onClick={() => setIsProfileOpen((prev) => !prev)}
+            title="Logout"
           >
-            {getInitials(userName)}
+            <LogOut size={18} />
           </div>
           {isProfileOpen && (
             <div className={styles.Navbar_profileDropdown}>
-              <div
-                className={styles.Navbar_profileItem}
-                onClick={() => navigate("/profile")}
-              >
-                View Profile
-              </div>
               <div className={styles.Navbar_profileItem} onClick={handleLogout}>
+                <LogOut size={15} />
                 Logout
               </div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
       {ToastComponent}

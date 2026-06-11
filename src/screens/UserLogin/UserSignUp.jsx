@@ -9,6 +9,7 @@ import {
 } from "../../services/apis/login.service";
 import loginDesk from "../../assets/images/login/gridvitalLoginDesk.png";
 import gridVitalLogo from "../../assets/images/logos/GridVitalLogo.png";
+import ClinicConsentModal from "./ClinicConsentModal";
 
 const UserSignUp = () => {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ const UserSignUp = () => {
   const otpRefs = useRef([]);
   const [resendTimer, setResendTimer] = useState(0);
 
+  const [isConsent, setIsConsent] = useState(false);
+  const [showConsentModal, setShowConsentModal] = useState(false);
+
   const [profile, setProfile] = useState({
     clinicName: "",
     doctorName: "",
@@ -32,7 +36,6 @@ const UserSignUp = () => {
     address: "",
     state: "",
     city: "",
-    defaultConsultationFee: "",
   });
 
   useEffect(() => {
@@ -165,6 +168,10 @@ const UserSignUp = () => {
     //   newErrors.defaultConsultationFee = 'Valid consultation fee is required';
     // }
 
+    if (!isConsent) {
+      newErrors.consent = "You must accept the terms and consent agreement";
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       toast.error("Please fix all errors");
@@ -173,10 +180,7 @@ const UserSignUp = () => {
 
     const payload = {
       ...profile,
-      // defaultConsultationFee: Number(profile.defaultConsultationFee)
-      ...(profile.defaultConsultationFee && {
-        defaultConsultationFee: Number(profile.defaultConsultationFee),
-      }),
+      isConsent: 1,
     };
 
     setLoading(true);
@@ -197,7 +201,8 @@ const UserSignUp = () => {
   };
 
   return (
-    <div className={styles.UserSignUpContainer}>
+    <>
+      <div className={styles.UserSignUpContainer}>
       <div className={styles.UserSignUpWrapper}>
         <div className={styles.UserSignUpCard}>
           <div className={styles.UserSignUpLeftSection}>
@@ -543,30 +548,32 @@ const UserSignUp = () => {
                     )}
                   </div>
                 </div>
-                <div className={styles.UserSignUpFormGroup}>
-                  <label className={styles.UserSignUpLabel}>
-                    Default Consultation Fee
-                  </label>
+                <div className={styles.UserSignUpConsentRow}>
                   <input
-                    type="number"
-                    value={profile.defaultConsultationFee}
-                    onChange={(e) =>
-                      handleProfileChange(
-                        "defaultConsultationFee",
-                        e.target.value,
-                      )
-                    }
-                    className={`${styles.UserSignUpInput} ${errors.defaultConsultationFee ? styles.UserSignUpInputError : ""}`}
-                    placeholder="Enter fee amount"
-                    min="0"
-                    disabled={loading}
+                    type="checkbox"
+                    id="clinic-consent"
+                    checked={isConsent}
+                    onChange={() => setShowConsentModal(true)}
+                    className={styles.UserSignUpConsentCheckbox}
                   />
-                  {errors.defaultConsultationFee && (
-                    <span className={styles.UserSignUpErrorText}>
-                      {errors.defaultConsultationFee}
-                    </span>
-                  )}
+                  <label
+                    htmlFor="clinic-consent"
+                    className={styles.UserSignUpConsentLabel}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowConsentModal(true);
+                    }}
+                  >
+                    I acknowledge that I am a registered practitioner and agree
+                    to GridVital Terms of Service & Healthcare Compliance
+                    Guidelines
+                  </label>
                 </div>
+                {errors.consent && (
+                  <span className={styles.UserSignUpErrorText}>
+                    {errors.consent}
+                  </span>
+                )}
                 <div className={styles.UserSignUpButtonRow}>
                   <button
                     type="button"
@@ -582,9 +589,9 @@ const UserSignUp = () => {
                   <button
                     type="submit"
                     className={styles.UserSignUpButton}
-                    disabled={loading}
+                    disabled={loading || !isConsent}
                   >
-                    {loading ? "Submitting..." : "Complete Registration"}
+                    {loading ? "Submitting..." : "Save"}
                   </button>
                 </div>
               </form>
@@ -593,6 +600,18 @@ const UserSignUp = () => {
         </div>
       </div>
     </div>
+    <ClinicConsentModal
+      show={showConsentModal}
+      onAccept={() => {
+        setIsConsent(true);
+        setShowConsentModal(false);
+      }}
+      onDecline={() => {
+        setIsConsent(false);
+        setShowConsentModal(false);
+      }}
+    />
+    </>
   );
 };
 

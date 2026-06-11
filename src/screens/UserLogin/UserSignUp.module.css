@@ -416,6 +416,34 @@
   }
 }
 
+.UserSignUpConsentRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.UserSignUpConsentCheckbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: #0284C7;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.UserSignUpConsentLabel {
+  font-size: clamp(11px, 1.8vw, 12px);
+  color: #475569;
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
+}
+
+.UserSignUpConsentLabel:hover {
+  color: #0284C7;
+}
+
 @media (max-height: 600px) {
   .UserSignUpContainer {
     height: auto;

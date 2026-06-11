@@ -13,6 +13,7 @@ import QRPatientAppointment from './screens/PatientScreen/Appointment/Appointmen
 import AppointmentSuccess from './screens/PatientScreen/Appointment/AppointmentSuccess'
 import ClinicPatientsList from "./screens/ClinicPatients/ClinicPatientsList/ClinicPatientsList";
 import ClinicProfile from "./screens/ClinicProfile/ClinicProfile"
+import CompleteProfile from "./screens/CompleteProfile/CompleteProfile"
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         </Route>
 
         <Route element={<ProtectedRoute />}>
+          <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route element={<ProtectedLayout />}>
             <Route path="/dashboard" element={<MainDashboard />} />
             <Route path="/patient-list" element={<ClinicPatientsList />} />

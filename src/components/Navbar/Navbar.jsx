@@ -90,12 +90,12 @@ const Navbar = ({ hideIcons, noRedirect }) => {
 
                 {hideIcons ? null : (
                     <div className={styles.NavbarRight} ref={dropdownRef}>
-                        {/* <div
+                        <div
                             className={styles.NavbarProfileIcon}
                             onClick={() => setIsProfileOpen(prev => !prev)}
                         >
                             👤
-                        </div> */}
+                        </div>
 
                         <div
                             className={styles.NavbarProfileAvatar}

@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './UserLogin.module.css';
 import { forgotPassword, resetPassword, userLogin } from '../../services/apis/login.service';
 import loginDesk from "../../assets/images/login/gridvitalLoginDesk.png"
-import { setAuthFromLogin } from '../../store/auth/auth.slice';
+import { setAuthFromLogin, logout } from '../../store/auth/auth.slice';
 import { useDispatch } from 'react-redux';
 import gridVitalLogo from "../../assets/images/logos/GridVitalLogo.png"
 import { APP_VERSION } from '../../config/appVersion';
@@ -13,6 +13,7 @@ import { APP_VERSION } from '../../config/appVersion';
 
 const UserLogin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const navigateToDashboard = () => {
     window.location.href = '/dashboard';
   };
@@ -71,12 +72,23 @@ const UserLogin = () => {
         dispatch(
           setAuthFromLogin({
             authToken: response.token,
+            userId: response.clinic?.id,
           })
         );
 
-        setTimeout(() => {
-          navigateToDashboard();
-        }, 500);
+        const persisted = {
+          isAuthenticated: JSON.stringify(true),
+          authToken: JSON.stringify(response.token),
+          userId: JSON.stringify(response.clinic?.id || ""),
+          customerId: JSON.stringify(""),
+        };
+        localStorage.setItem("persist:auth", JSON.stringify(persisted));
+
+        if (response.clinic?.profileDone === false) {
+          window.location.href = "/complete-profile";
+        } else {
+          window.location.href = "/dashboard";
+        }
       } else {
         toast.error(response?.message || 'Invalid credentials');
       }
@@ -267,7 +279,18 @@ const UserLogin = () => {
                   {loading ? 'Verifying...' : 'Login'}
                 </button>
                 <div className={styles.userLoginRegisterLink}>
-                  Don't have an account? <Link to="/register" className={styles.userLoginRegisterLinkText}>register with us</Link>
+                  Don't have an account?{" "}
+                  <span
+                    onClick={() => {
+                      dispatch(logout());
+                      localStorage.removeItem("persist:auth");
+                      navigate("/register");
+                    }}
+                    className={styles.userLoginRegisterLinkText}
+                    style={{ cursor: "pointer" }}
+                  >
+                    register with us
+                  </span>
                 </div>
               </div>
             )}

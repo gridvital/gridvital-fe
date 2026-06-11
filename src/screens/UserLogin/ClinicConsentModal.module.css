@@ -1,0 +1,229 @@
+.ClinicConsentModal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: ClinicConsentModal_fadeIn 0.2s ease;
+}
+
+@keyframes ClinicConsentModal_fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ClinicConsentModal_scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.ClinicConsentModal_box {
+  width: 90%;
+  max-width: 600px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  animation: ClinicConsentModal_scaleIn 0.25s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ClinicConsentModal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.ClinicConsentModal_title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ClinicConsentModal_closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.ClinicConsentModal_closeBtn:hover {
+  background: #E2E8F0;
+}
+
+.ClinicConsentModal_scrollBox {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 12px;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  margin: 16px 0;
+  padding: 16px;
+  flex: 1;
+}
+
+.ClinicConsentModal_scrollBox::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ClinicConsentModal_scrollBox::-webkit-scrollbar-track {
+  background: #E2E8F0;
+  border-radius: 2px;
+}
+
+.ClinicConsentModal_scrollBox::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 2px;
+}
+
+.ClinicConsentModal_section {
+  margin-bottom: 20px;
+}
+
+.ClinicConsentModal_section:last-child {
+  margin-bottom: 0;
+}
+
+.ClinicConsentModal_sectionHeading {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.ClinicConsentModal_text {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0 0 8px 0;
+}
+
+.ClinicConsentModal_hindiText {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-radius: 4px;
+  border-left: 3px solid #0284C7;
+}
+
+.ClinicConsentModal_footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.ClinicConsentModal_declineBtn {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.ClinicConsentModal_declineBtn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.ClinicConsentModal_acceptBtn {
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #0284C7;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.ClinicConsentModal_acceptBtn:hover {
+  background: #0369a1;
+}
+
+@media (max-width: 768px) {
+  .ClinicConsentModal_overlay {
+    padding: 12px;
+  }
+
+  .ClinicConsentModal_box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .ClinicConsentModal_title {
+    font-size: 16px;
+  }
+
+  .ClinicConsentModal_scrollBox {
+    padding: 12px;
+    margin: 12px 0;
+  }
+
+  .ClinicConsentModal_sectionHeading {
+    font-size: 13px;
+  }
+
+  .ClinicConsentModal_text {
+    font-size: 12px;
+  }
+
+  .ClinicConsentModal_hindiText {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .ClinicConsentModal_footer {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .ClinicConsentModal_declineBtn,
+  .ClinicConsentModal_acceptBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ClinicConsentModal_box {
+    padding: 16px;
+    width: 100%;
+  }
+
+  .ClinicConsentModal_scrollBox {
+    padding: 10px;
+    max-height: 45vh;
+  }
+}

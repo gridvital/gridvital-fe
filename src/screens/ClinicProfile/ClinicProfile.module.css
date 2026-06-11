@@ -226,9 +226,8 @@
   font-size: 13px;
   font-weight: 600;
   color: #0F172A;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: right;
+  word-break: break-word;
 }
 
 .ClinicProfile_badge {

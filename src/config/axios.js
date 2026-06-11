@@ -34,6 +34,10 @@ axiosInstance.interceptors.response.use(
 
     if (error.response && error.response.status === 401) {
       store.dispatch({ type: "auth/logout" });
+      localStorage.removeItem("persist:auth");
+      localStorage.removeItem("gv_subscription_date");
+      localStorage.removeItem("gv_subscription_data");
+      window.location.href = "/login";
     }
 
     console.error("API Error:", error);

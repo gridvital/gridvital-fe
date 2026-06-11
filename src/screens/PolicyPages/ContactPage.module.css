@@ -1,0 +1,243 @@
+.contactPage_wrapper {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactPage_container {
+  width: 100%;
+  max-width: 900px;
+  padding: 40px 24px 0;
+}
+
+.contactPage_header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contactPage_backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #0284C7;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  margin-bottom: 24px;
+}
+
+.contactPage_backLink:hover {
+  background: rgba(2, 132, 199, 0.08);
+}
+
+.contactPage_brandBlock {
+  margin-bottom: 20px;
+}
+
+.contactPage_logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.5px;
+}
+
+.contactPage_title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.contactPage_subtitle {
+  font-size: 15px;
+  color: #475569;
+  margin: 0;
+}
+
+.contactPage_main {
+  margin-bottom: 32px;
+}
+
+.contactPage_channelsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.contactPage_channelCard {
+  background: #FFFFFF;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.contactPage_channelCard:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.contactPage_cardIconWrap {
+  width: 44px;
+  height: 44px;
+  background: #eff6ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.contactPage_cardEmoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.contactPage_cardTitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 10px;
+}
+
+.contactPage_cardCopy {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0 0 auto;
+}
+
+.contactPage_cardLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  margin: 16px 0 4px;
+}
+
+.contactPage_mailLink {
+  display: inline-block;
+  color: #0284C7;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.2s;
+}
+
+.contactPage_mailLink:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.contactPage_cardResponse {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 8px 0 0;
+}
+
+.contactPage_statutoryBanner {
+  background: #FFFFFF;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 32px 36px;
+  text-align: center;
+}
+
+.contactPage_statutoryIcon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.contactPage_statutoryTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 10px;
+}
+
+.contactPage_statutoryCopy {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 640px;
+  margin: 0 auto 20px;
+}
+
+.contactPage_statutoryDetails {
+  margin-bottom: 16px;
+}
+
+.contactPage_statutoryLine {
+  font-size: 14px;
+  color: #334155;
+  margin: 0 0 6px;
+  line-height: 1.6;
+}
+
+.contactPage_locationIcon {
+  display: inline-block;
+}
+
+.contactPage_hindiNote {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #475569;
+  text-align: left;
+}
+
+.contactPage_footer {
+  text-align: center;
+  padding: 24px 0 40px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.contactPage_footerText {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.contactPage_footerCopyright {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .contactPage_channelsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contactPage_container {
+    padding: 24px 16px 0;
+  }
+
+  .contactPage_title {
+    font-size: 22px;
+  }
+
+  .contactPage_statutoryBanner {
+    padding: 24px 20px;
+  }
+}

@@ -1,0 +1,286 @@
+.refundPage_wrapper {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.refundPage_container {
+  width: 100%;
+  max-width: 850px;
+  padding: 40px 24px 0;
+}
+
+.refundPage_header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.refundPage_backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #0284C7;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  margin-bottom: 24px;
+}
+
+.refundPage_backLink:hover {
+  background: rgba(2, 132, 199, 0.08);
+}
+
+.refundPage_brandBlock {
+  margin-bottom: 20px;
+}
+
+.refundPage_logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.5px;
+}
+
+.refundPage_title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.refundPage_timestamp {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+}
+
+.refundPage_documentCard {
+  background: #FFFFFF;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 40px 48px;
+  margin-bottom: 32px;
+}
+
+.refundPage_intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0 0 36px;
+}
+
+.refundPage_sectionBlock {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.refundPage_sectionBlock:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.refundPage_sectionTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+
+.refundPage_hindiSub {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  margin-top: 2px;
+}
+
+.refundPage_para {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 16px 0 0;
+}
+
+.refundPage_list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.refundPage_bulletItem {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #334155;
+  padding-left: 20px;
+  position: relative;
+}
+
+.refundPage_bulletItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0284C7;
+  flex-shrink: 0;
+}
+
+.refundPage_inlineLink {
+  color: #0284C7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.refundPage_inlineLink:hover {
+  text-decoration: underline;
+}
+
+.refundPage_orderedList {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.refundPage_orderedItem {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #334155;
+  padding: 12px 16px 12px 40px;
+  background: #f8fafc;
+  border-radius: 8px;
+  position: relative;
+  counter-increment: step-counter;
+}
+
+.refundPage_orderedItem::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0284C7;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refundPage_policyCallout {
+  background: #fffbeb;
+  border-left: 4px solid #F59E0B;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+}
+
+.refundPage_policyCallout .refundPage_bulletItem::before {
+  background: #F59E0B;
+}
+
+.refundPage_policyCallout .refundPage_hindiNote {
+  background: #fef3c7;
+}
+
+.refundPage_hindiNote {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.refundPage_footer {
+  text-align: center;
+  padding: 24px 0 40px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.refundPage_footerText {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.refundPage_footerLink {
+  color: #0284C7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.refundPage_footerLink:hover {
+  text-decoration: underline;
+}
+
+.refundPage_footerCopyright {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .refundPage_container {
+    padding: 24px 16px 0;
+  }
+
+  .refundPage_title {
+    font-size: 22px;
+  }
+
+  .refundPage_documentCard {
+    padding: 24px 20px;
+    border-radius: 12px;
+  }
+
+  .refundPage_sectionTitle {
+    font-size: 17px;
+  }
+
+  .refundPage_bulletItem {
+    font-size: 14px;
+    padding-left: 16px;
+  }
+
+  .refundPage_orderedItem {
+    font-size: 14px;
+    padding: 10px 14px 10px 36px;
+  }
+
+  .refundPage_orderedItem::before {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    left: 10px;
+    top: 10px;
+  }
+
+  .refundPage_policyCallout {
+    padding: 16px;
+  }
+}

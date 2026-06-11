@@ -9,7 +9,6 @@ import {
   Clock,
   Download,
   LogIn,
-  LayoutDashboard,
   Star,
   ChevronRight,
   Zap,
@@ -17,6 +16,8 @@ import {
 } from 'lucide-react';
 import usePWAInstall from '../../hooks/usePWAInstall';
 import IOSInstallModal from '../../components/IOSInstallModal/IOSInstallModal';
+import gridVitalLogo from '../../assets/images/logos/GridVitalLogo.png';
+import loginDesk from '../../assets/images/login/gridvitalLoginDesk.png';
 import styles from './HomePage.module.css';
 
 const features = [
@@ -60,11 +61,10 @@ const HomePage = () => {
         <header className={styles.homepage_mobileHeader}>
           <div className={styles.homepage_navbar}>
             <div className={styles.homepage_logo}>
-              <Zap size={22} className={styles.homepage_logoIcon} />
-              <span className={styles.homepage_logoText}>GridVital</span>
+              <img src={gridVitalLogo} alt="GridVital" className={styles.homepage_logoText} />
             </div>
 
-            <div className={styles.homepage_navActions}>
+            {/* <div className={styles.homepage_navActions}>
               <button
                 className={styles.homepage_loginBtn}
                 onClick={() => navigate('/login')}
@@ -78,7 +78,7 @@ const HomePage = () => {
                   Install App
                 </button>
               )}
-            </div>
+            </div> */}
           </div>
         </header>
 
@@ -121,10 +121,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className={styles.homepage_heroVisual}>
-              <div className={styles.homepage_heroMockup}>
-                <LayoutDashboard size={48} className={styles.homepage_heroMockupIcon} />
-                <div className={styles.homepage_heroMockupBadge}>Dashboard</div>
-              </div>
+              <img src={loginDesk} alt="GridVital Desk" className={styles.homepage_heroImage} />
             </div>
           </section>
 
@@ -173,10 +170,25 @@ const HomePage = () => {
               </p>
             </div>
           </section>
+
+          {/* Mobile Footer Links */}
+          <div className={styles.homepage_mobileFooter}>
+            <div className={styles.homepage_mobileFooterColumns}>
+              <div className={styles.homepage_mobileFooterCol}>
+                <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/terms')}>Terms of Service</button>
+                <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/privacy-policy')}>Privacy Policy</button>
+                <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/refund-policy')}>Refund Policy</button>
+              </div>
+              <div className={styles.homepage_mobileFooterCol}>
+                <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/about')}>About Us</button>
+                <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/contact')}>Contact Us</button>
+              </div>
+            </div>
+          </div>
         </main>
 
         {/* Mobile Bottom Bar */}
-        <div className={styles.homepage_mobileBottomBar}>
+        {/* <div className={styles.homepage_mobileBottomBar}>
           {isInstallable && (
             <button className={styles.homepage_bottomInstallBtn} onClick={handleInstall}>
               <Download size={16} />
@@ -186,7 +198,7 @@ const HomePage = () => {
           <p className={styles.homepage_bottomLegal}>
             &copy; 2026 GridVital Inc. All rights reserved.
           </p>
-        </div>
+        </div> */}
 
         {/* Desktop Footer */}
         <footer className={styles.homepage_desktopFooter}>
@@ -198,15 +210,23 @@ const HomePage = () => {
                 Smart clinic management platform for modern practitioners.
               </p>
             </div>
-            <div className={styles.homepage_footerLinks}>
-              <button className={styles.homepage_footerLink}>Privacy Policy</button>
-              <button className={styles.homepage_footerLink}>Terms of Service</button>
-              <button className={styles.homepage_footerLink}>Contact Support</button>
+            <div className={styles.homepage_footerColumns}>
+              <div className={styles.homepage_footerColumn}>
+                <h4 className={styles.homepage_footerColumnTitle}>Policy</h4>
+                <button className={styles.homepage_footerLink} onClick={() => navigate('/terms')}>Terms of Service</button>
+                <button className={styles.homepage_footerLink} onClick={() => navigate('/privacy-policy')}>Privacy Policy</button>
+                <button className={styles.homepage_footerLink} onClick={() => navigate('/refund-policy')}>Refund Policy</button>
+              </div>
+              <div className={styles.homepage_footerColumn}>
+                <h4 className={styles.homepage_footerColumnTitle}>Company</h4>
+                <button className={styles.homepage_footerLink} onClick={() => navigate('/about')}>About Us</button>
+                <button className={styles.homepage_footerLink} onClick={() => navigate('/contact')}>Contact Us</button>
+              </div>
             </div>
           </div>
           <div className={styles.homepage_footerDivider} />
           <p className={styles.homepage_footerCopyright}>
-            &copy; 2026 GridVital Inc. All rights reserved.
+            &copy; 2026 GridVital
           </p>
         </footer>
       </div>

@@ -292,6 +292,17 @@ const UserLogin = () => {
                     register with us
                   </span>
                 </div>
+                <div className={styles.userLoginPagesLinks}>
+                  <Link to="/terms" className={styles.userLoginPagesLink}>Terms</Link>
+                  <span className={styles.userLoginPagesSep}>|</span>
+                  <Link to="/privacy-policy" className={styles.userLoginPagesLink}>Privacy</Link>
+                  <span className={styles.userLoginPagesSep}>|</span>
+                  <Link to="/refund-policy" className={styles.userLoginPagesLink}>Refund</Link>
+                  <span className={styles.userLoginPagesSep}>|</span>
+                  <Link to="/about" className={styles.userLoginPagesLink}>About</Link>
+                  <span className={styles.userLoginPagesSep}>|</span>
+                  <Link to="/contact" className={styles.userLoginPagesLink}>Contact</Link>
+                </div>
               </div>
             )}
 

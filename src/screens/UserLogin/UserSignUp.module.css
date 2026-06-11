@@ -317,6 +317,32 @@
   text-decoration: underline;
 }
 
+.UserSignUpPagesLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.UserSignUpPagesLink {
+  font-size: 11px;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.UserSignUpPagesLink:hover {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+.UserSignUpPagesSep {
+  font-size: 10px;
+  color: #d1d5db;
+}
+
 .UserSignUpMobileHeaderLogo {
   display: flex;
   justify-content: center;

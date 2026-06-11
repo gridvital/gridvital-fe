@@ -1,0 +1,236 @@
+.aboutPage_wrapper {
+  min-height: 100vh;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutPage_container {
+  width: 100%;
+  max-width: 850px;
+  padding: 40px 24px 0;
+}
+
+.aboutPage_header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.aboutPage_backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #0284C7;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  margin-bottom: 24px;
+}
+
+.aboutPage_backLink:hover {
+  background: rgba(2, 132, 199, 0.08);
+}
+
+.aboutPage_brandBlock {
+  margin-bottom: 20px;
+}
+
+.aboutPage_logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.5px;
+}
+
+.aboutPage_heroHeading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.aboutPage_tagline {
+  font-size: 15px;
+  color: #475569;
+  margin: 0;
+}
+
+.aboutPage_main {
+  margin-bottom: 32px;
+}
+
+.aboutPage_storySection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: #FFFFFF;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.aboutPage_storyColumn {
+  padding: 36px 32px;
+}
+
+.aboutPage_storyDivider {
+  width: 1px;
+  background: #e2e8f0;
+}
+
+.aboutPage_storyTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0284C7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px;
+}
+
+.aboutPage_storySub {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0 0 12px;
+}
+
+.aboutPage_storyCopy {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+}
+
+.aboutPage_pillarsSection {
+  margin-bottom: 32px;
+}
+
+.aboutPage_pillarsHeading {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0F172A;
+  text-align: center;
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+
+.aboutPage_pillarsHindi {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.aboutPage_pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.aboutPage_pillarCard {
+  background: #FFFFFF;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.aboutPage_pillarCard:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.aboutPage_pillarIconWrap {
+  width: 44px;
+  height: 44px;
+  background: #eff6ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.aboutPage_pillarEmoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.aboutPage_pillarTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 10px;
+}
+
+.aboutPage_pillarCopy {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+.aboutPage_footer {
+  text-align: center;
+  padding: 24px 0 40px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.aboutPage_footerText {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.aboutPage_footerCopyright {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .aboutPage_storySection {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutPage_storyDivider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .aboutPage_storyColumn {
+    padding: 24px 20px;
+  }
+
+  .aboutPage_pillarsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .aboutPage_container {
+    padding: 24px 16px 0;
+  }
+
+  .aboutPage_heroHeading {
+    font-size: 22px;
+  }
+
+  .aboutPage_pillarsHeading {
+    font-size: 19px;
+  }
+}

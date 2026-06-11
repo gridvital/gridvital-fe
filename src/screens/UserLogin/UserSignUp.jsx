@@ -311,6 +311,17 @@ const UserSignUp = () => {
                     Login
                   </Link>
                 </div>
+                <div className={styles.UserSignUpPagesLinks}>
+                  <Link to="/terms" className={styles.UserSignUpPagesLink}>Terms</Link>
+                  <span className={styles.UserSignUpPagesSep}>|</span>
+                  <Link to="/privacy-policy" className={styles.UserSignUpPagesLink}>Privacy</Link>
+                  <span className={styles.UserSignUpPagesSep}>|</span>
+                  <Link to="/refund-policy" className={styles.UserSignUpPagesLink}>Refund</Link>
+                  <span className={styles.UserSignUpPagesSep}>|</span>
+                  <Link to="/about" className={styles.UserSignUpPagesLink}>About</Link>
+                  <span className={styles.UserSignUpPagesSep}>|</span>
+                  <Link to="/contact" className={styles.UserSignUpPagesLink}>Contact</Link>
+                </div>
               </form>
             )}
 

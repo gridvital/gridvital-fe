@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchSubscription } from "../services/apis/dashboard.service";
 
-const CACHE_DATE_KEY = "gv_subscription_date";
-const CACHE_DATA_KEY = "gv_subscription_data";
-
 const useSubscription = () => {
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);

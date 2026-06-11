@@ -6,7 +6,7 @@ const ProtectedRoute = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;

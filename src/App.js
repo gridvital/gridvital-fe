@@ -15,6 +15,7 @@ import OPSLogin from "./screens/OPSScreen/OPSLogin/OPSLogin";
 import OPSClinicsList from "./screens/OPSScreen/OPSClinicsList/OPSClinicsList";
 import OPSClinicDetail from "./screens/OPSScreen/OPSClinicDetail/OPSClinicDetail";
 import OPSRegisterRM from "./screens/OPSScreen/OPSRegisterRM/OPSRegisterRM";
+import HomePage from "./screens/HomePage/HomePage";
 
 const App = () => {
   return (
@@ -30,8 +31,10 @@ const App = () => {
         }}
       />
       <Routes>
+        <Route path="/" element={<UserLogin />} />
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<UserLogin />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<UserSignUp />} />
           <Route path="/book-appointment" element={<QRPatientAppointment />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />

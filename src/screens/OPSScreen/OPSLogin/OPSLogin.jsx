@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Eye, EyeOff } from "lucide-react";
 import gridVitalLogo from "../../../assets/images/logos/GridVitalLogo.png";
 import toast from "react-hot-toast";
-import { selectIsAuthenticated } from "../../../store/auth/auth.selectors";
 import { setAuthFromLogin } from "../../../store/auth/auth.slice";
 import { opsLogin } from "../../../services/apis/ops.service";
 import styles from "./OPSLogin.module.css";

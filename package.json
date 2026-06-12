@@ -28,7 +28,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "postinstall": "npx browserslist@latest --update-db",
+    "postinstall": "npx update-browserslist-db@latest",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

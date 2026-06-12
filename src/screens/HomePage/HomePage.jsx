@@ -181,6 +181,7 @@ const HomePage = () => {
               <div className={styles.homepage_mobileFooterCol}>
                 <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/about')}>About Us</button>
                 <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/contact')}>Contact Us</button>
+                <button className={styles.homepage_mobileFooterLink} onClick={() => navigate('/ops/login')}>OPS Login</button>
               </div>
             </div>
           </div>
@@ -220,6 +221,7 @@ const HomePage = () => {
                 <h4 className={styles.homepage_footerColumnTitle}>Company</h4>
                 <button className={styles.homepage_footerLink} onClick={() => navigate('/about')}>About Us</button>
                 <button className={styles.homepage_footerLink} onClick={() => navigate('/contact')}>Contact Us</button>
+                <button className={styles.homepage_footerLink} onClick={() => navigate('/ops/login')}>OPS Login</button>
               </div>
             </div>
           </div>

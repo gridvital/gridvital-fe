@@ -6,11 +6,11 @@ import UserSignUp from "./screens/UserLogin/UserSignUp";
 import { Toaster } from "react-hot-toast";
 import ProtectedLayout from "./routes/ProtectedLayout";
 import Dashboard from "./screens/MainDashboard/MainDashboard";
-import QRPatientAppointment from './screens/PatientScreen/Appointment/Appointment'
-import AppointmentSuccess from './screens/PatientScreen/Appointment/AppointmentSuccess'
+import QRPatientAppointment from "./screens/PatientScreen/Appointment/Appointment";
+import AppointmentSuccess from "./screens/PatientScreen/Appointment/AppointmentSuccess";
 import ClinicPatientsList from "./screens/ClinicPatients/ClinicPatientsList/ClinicPatientsList";
-import ClinicProfile from "./screens/ClinicProfile/ClinicProfile"
-import CompleteProfile from "./screens/CompleteProfile/CompleteProfile"
+import ClinicProfile from "./screens/ClinicProfile/ClinicProfile";
+import CompleteProfile from "./screens/CompleteProfile/CompleteProfile";
 import OPSLogin from "./screens/OPSScreen/OPSLogin/OPSLogin";
 import OPSClinicsList from "./screens/OPSScreen/OPSClinicsList/OPSClinicsList";
 import OPSClinicDetail from "./screens/OPSScreen/OPSClinicDetail/OPSClinicDetail";
@@ -48,6 +48,7 @@ const App = () => {
           <Route path="/register" element={<UserSignUp />} />
           <Route path="/book-appointment" element={<QRPatientAppointment />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
+          <Route path="/ops/login" element={<OPSLogin />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>
@@ -59,7 +60,6 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route path="/ops/login" element={<OPSLogin />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/ops/clinics" element={<OPSClinicsList />} />
           <Route path="/ops/clinics/:id" element={<OPSClinicDetail />} />

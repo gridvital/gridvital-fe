@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Search, X, Phone, User, Calendar, ChevronRight, Hash, IndianRupee } from 'lucide-react';
+import { Search, X, Phone, User, Calendar, ChevronRight, Hash } from 'lucide-react';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
 import { fetchPatientHistory } from '../../../services/apis/dashboard.service';
 import LoadingDots from '../../../components/LoadingDots/LoadingDots';

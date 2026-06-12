@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft,
   User,
   Building2,
   QrCode,
@@ -29,7 +27,6 @@ const subTypeConfig = {
 };
 
 const ClinicProfile = () => {
-  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const { subscription } = useSubscription();

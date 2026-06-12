@@ -14,10 +14,6 @@ import { APP_VERSION } from '../../config/appVersion';
 const UserLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const navigateToDashboard = () => {
-    window.location.href = '/dashboard';
-  };
-
   const [step, setStep] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

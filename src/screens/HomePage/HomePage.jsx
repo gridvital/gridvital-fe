@@ -8,7 +8,6 @@ import {
   ShieldCheck,
   Clock,
   Download,
-  LogIn,
   Star,
   ChevronRight,
   Zap,

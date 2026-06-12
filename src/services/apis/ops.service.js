@@ -23,3 +23,11 @@ export const opsDeleteClinic = (payload) => {
 export const opsRegisterRM = (payload) => {
   return postRequest("/api/ops/register-rm", payload);
 };
+
+export const opsRMsList = (payload) => {
+  return postRequest("/api/ops/rms-list", payload);
+};
+
+export const opsDeleteRM = (payload) => {
+  return postRequest("/api/ops/delete-rm", payload);
+};

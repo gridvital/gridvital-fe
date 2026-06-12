@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Search, UserPlus } from "lucide-react";
+import { Search, UserPlus, Users } from "lucide-react";
 import toast from "react-hot-toast";
 import { opsClinicsList } from "../../../services/apis/ops.service";
 import { logout } from "../../../store/auth/auth.slice";
@@ -97,15 +97,24 @@ const OPSClinicsList = () => {
           window.location.href = "/ops/login";
         }}
         rightAction={
-          isGridOps ? (
+          <div className={styles.OPSClinicsList_headerActions}>
             <button
               className={styles.OPSClinicsList_rmBtn}
-              onClick={() => navigate("/ops/register-rm")}
-              title="Register RM"
+              onClick={() => navigate("/ops/rms")}
+              title="View RMs"
             >
-              <UserPlus size={18} />
+              <Users size={18} />
             </button>
-          ) : undefined
+            {isGridOps && (
+              <button
+                className={styles.OPSClinicsList_rmBtn}
+                onClick={() => navigate("/ops/register-rm")}
+                title="Register RM"
+              >
+                <UserPlus size={18} />
+              </button>
+            )}
+          </div>
         }
       />
 
@@ -164,7 +173,7 @@ const OPSClinicsList = () => {
                 key={clinic._id}
                 clinic={clinic}
                 onClick={() => navigate(`/ops/clinics/${clinic._id}`)}
-                onDelete={setDeleteTarget}
+                onDelete={isGridOps ? setDeleteTarget : undefined}
               />
             ))}
           </div>

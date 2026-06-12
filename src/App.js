@@ -15,6 +15,7 @@ import OPSLogin from "./screens/OPSScreen/OPSLogin/OPSLogin";
 import OPSClinicsList from "./screens/OPSScreen/OPSClinicsList/OPSClinicsList";
 import OPSClinicDetail from "./screens/OPSScreen/OPSClinicDetail/OPSClinicDetail";
 import OPSRegisterRM from "./screens/OPSScreen/OPSRegisterRM/OPSRegisterRM";
+import OPSRMsList from "./screens/OPSScreen/OPSRMsList/OPSRMsList";
 import HomePage from "./screens/HomePage/HomePage";
 import TermsPage from "./screens/PolicyPages/TermsPage";
 import PrivacyPage from "./screens/PolicyPages/PrivacyPage";
@@ -48,7 +49,6 @@ const App = () => {
           <Route path="/register" element={<UserSignUp />} />
           <Route path="/book-appointment" element={<QRPatientAppointment />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
-          <Route path="/ops/login" element={<OPSLogin />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>
@@ -60,10 +60,12 @@ const App = () => {
           </Route>
         </Route>
 
+        <Route path="/ops/login" element={<OPSLogin />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/ops/clinics" element={<OPSClinicsList />} />
           <Route path="/ops/clinics/:id" element={<OPSClinicDetail />} />
           <Route path="/ops/register-rm" element={<OPSRegisterRM />} />
+          <Route path="/ops/rms" element={<OPSRMsList />} />
         </Route>
 
         <Route path="*" element={<UserLogin />} />

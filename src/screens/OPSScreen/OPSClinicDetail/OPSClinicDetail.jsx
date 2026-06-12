@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectAuth } from "../../../store/auth/auth.selectors";
 import {
   Mail,
   Phone,
@@ -40,6 +42,8 @@ const OPSClinicDetail = () => {
   const [showManageSub, setShowManageSub] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const auth = useSelector(selectAuth);
+  const isGridOps = auth.roles.includes("GRID_OPS");
 
   useEffect(() => {
     if (!id) return;
@@ -353,24 +357,25 @@ const OPSClinicDetail = () => {
           </div>
         )}
 
-        {/* Danger Zone */}
-        <div className={styles.OPSClinicDetail_section}>
-          <div className={styles.OPSClinicDetail_dangerZone}>
-            <AlertTriangle size={18} className={styles.OPSClinicDetail_dangerIcon} />
-            <div>
-              <p className={styles.OPSClinicDetail_dangerTitle}>Danger Zone</p>
-              <p className={styles.OPSClinicDetail_dangerDesc}>
-                Permanently delete this clinic and all associated data
-              </p>
+        {isGridOps && (
+          <div className={styles.OPSClinicDetail_section}>
+            <div className={styles.OPSClinicDetail_dangerZone}>
+              <AlertTriangle size={18} className={styles.OPSClinicDetail_dangerIcon} />
+              <div>
+                <p className={styles.OPSClinicDetail_dangerTitle}>Danger Zone</p>
+                <p className={styles.OPSClinicDetail_dangerDesc}>
+                  Permanently delete this clinic and all associated data
+                </p>
+              </div>
+              <button
+                className={styles.OPSClinicDetail_deleteBtn}
+                onClick={() => setShowDelete(true)}
+              >
+                Delete
+              </button>
             </div>
-            <button
-              className={styles.OPSClinicDetail_deleteBtn}
-              onClick={() => setShowDelete(true)}
-            >
-              Delete
-            </button>
           </div>
-        </div>
+        )}
       </div>
 
       {showManageSub && (

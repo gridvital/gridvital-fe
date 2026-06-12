@@ -20,6 +20,11 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes ClinicConsentModal_slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
 .ClinicConsentModal_box {
   width: 90%;
   max-width: 600px;
@@ -36,18 +41,20 @@
 
 .ClinicConsentModal_header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 12px;
   flex-shrink: 0;
+  gap: 12px;
 }
 
 .ClinicConsentModal_title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #0F172A;
   margin: 0;
   line-height: 1.4;
+  flex: 1;
 }
 
 .ClinicConsentModal_closeBtn {
@@ -69,13 +76,42 @@
   background: #E2E8F0;
 }
 
+.ClinicConsentModal_langToggle {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.ClinicConsentModal_langBtn {
+  flex: 1;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ClinicConsentModal_langBtnActive {
+  background: #ffffff;
+  color: #0F172A;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 .ClinicConsentModal_scrollBox {
   max-height: 50vh;
   overflow-y: auto;
   padding-right: 12px;
   border: 1px solid #E2E8F0;
   border-radius: 6px;
-  margin: 16px 0;
+  margin: 0 0 16px;
   padding: 16px;
   flex: 1;
 }
@@ -114,18 +150,7 @@
   font-size: 13px;
   color: #475569;
   line-height: 1.7;
-  margin: 0 0 8px 0;
-}
-
-.ClinicConsentModal_hindiText {
-  font-size: 12px;
-  color: #64748b;
-  line-height: 1.7;
   margin: 0;
-  padding: 8px 12px;
-  background: #f8fafc;
-  border-radius: 4px;
-  border-left: 3px solid #0284C7;
 }
 
 .ClinicConsentModal_footer {
@@ -134,7 +159,6 @@
   justify-content: flex-end;
   gap: 12px;
   flex-shrink: 0;
-  padding-top: 4px;
 }
 
 .ClinicConsentModal_declineBtn {
@@ -172,23 +196,30 @@
   background: #0369a1;
 }
 
-@media (max-width: 768px) {
+/* Mobile bottom sheet */
+@media (max-width: 767px) {
   .ClinicConsentModal_overlay {
-    padding: 12px;
+    align-items: flex-end;
+    padding: 0;
   }
 
   .ClinicConsentModal_box {
-    width: 95%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 16px 16px 0 0;
     padding: 20px;
+    animation: ClinicConsentModal_slideUp 0.3s ease;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
   }
 
   .ClinicConsentModal_title {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .ClinicConsentModal_scrollBox {
+    max-height: 45vh;
     padding: 12px;
-    margin: 12px 0;
   }
 
   .ClinicConsentModal_sectionHeading {
@@ -199,14 +230,8 @@
     font-size: 12px;
   }
 
-  .ClinicConsentModal_hindiText {
-    font-size: 11px;
-    padding: 6px 10px;
-  }
-
   .ClinicConsentModal_footer {
     flex-direction: column-reverse;
-    gap: 8px;
   }
 
   .ClinicConsentModal_declineBtn,
@@ -219,11 +244,10 @@
 @media (max-width: 480px) {
   .ClinicConsentModal_box {
     padding: 16px;
-    width: 100%;
   }
 
   .ClinicConsentModal_scrollBox {
     padding: 10px;
-    max-height: 45vh;
+    max-height: 40vh;
   }
 }

@@ -28,6 +28,7 @@ const UserSignUp = () => {
   const [resendTimer, setResendTimer] = useState(0);
 
   const [isConsent, setIsConsent] = useState(false);
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
   const [showConsentModal, setShowConsentModal] = useState(false);
 
   const [profile, setProfile] = useState({
@@ -77,9 +78,20 @@ const UserSignUp = () => {
       return;
     }
 
+    if (!isTermsAccepted) {
+      setErrors({ terms: "You must accept the terms and conditions" });
+      toast.error("You must accept the terms and conditions");
+      return;
+    }
+
     setLoading(true);
     try {
-      const response = await userRegister({ email, password });
+      const response = await userRegister({
+        email,
+        password,
+        isTermsAccepted: true,
+        consentAcceptedAt: new Date().toISOString(),
+      });
 
       if (response?.success === true) {
         toast.success(response?.message || "OTP sent to email");
@@ -103,7 +115,12 @@ const UserSignUp = () => {
 
     setLoading(true);
     try {
-      const response = await userRegister({ email, password });
+      const response = await userRegister({
+        email,
+        password,
+        isTermsAccepted: true,
+        consentAcceptedAt: new Date().toISOString(),
+      });
 
       if (response?.success === true) {
         toast.success("OTP resent to email");
@@ -298,10 +315,34 @@ const UserSignUp = () => {
                     </span>
                   )}
                 </div>
+                <div className={styles.UserSignUpConsentRow}>
+                  <input
+                    type="checkbox"
+                    id="terms-consent"
+                    checked={isTermsAccepted}
+                    onChange={() => setShowConsentModal(true)}
+                    className={styles.UserSignUpConsentCheckbox}
+                  />
+                  <label
+                    htmlFor="terms-consent"
+                    className={styles.UserSignUpConsentLabel}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowConsentModal(true);
+                    }}
+                  >
+                     I verify my medical credentials and agree to the GridVital Terms, Data Privacy Rules, and Absolute Liability Waiver.
+                  </label>
+                </div>
+                {errors.terms && (
+                  <span className={styles.UserSignUpErrorText}>
+                    {errors.terms}
+                  </span>
+                )}
                 <button
                   type="submit"
                   className={styles.UserSignUpButton}
-                  disabled={loading}
+                  disabled={loading || !isTermsAccepted}
                 >
                   {loading ? "Sending..." : "Verify Email"}
                 </button>
@@ -639,10 +680,12 @@ const UserSignUp = () => {
     <ClinicConsentModal
       show={showConsentModal}
       onAccept={() => {
+        setIsTermsAccepted(true);
         setIsConsent(true);
         setShowConsentModal(false);
       }}
       onDecline={() => {
+        setIsTermsAccepted(false);
         setIsConsent(false);
         setShowConsentModal(false);
       }}

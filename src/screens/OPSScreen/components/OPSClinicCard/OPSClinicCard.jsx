@@ -22,16 +22,18 @@ const OPSClinicCard = ({ clinic, onClick, onDelete }) => {
           </span>
           <OPSSubscriptionBadge type={clinic.subscriptionType} />
         </div>
-        <button
-          className={styles.OPSClinicCard_deleteBtn}
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(clinic);
-          }}
-          aria-label="Delete clinic"
-        >
-          <Trash2 size={15} />
-        </button>
+        {onDelete && (
+          <button
+            className={styles.OPSClinicCard_deleteBtn}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(clinic);
+            }}
+            aria-label="Delete clinic"
+          >
+            <Trash2 size={15} />
+          </button>
+        )}
       </div>
       <span className={styles.OPSClinicCard_doctor}>
         {clinic.doctorName}

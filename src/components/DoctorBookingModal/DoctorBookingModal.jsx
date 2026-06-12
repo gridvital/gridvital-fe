@@ -201,7 +201,7 @@ const DoctorBookingModal = ({ isOpen, onClose, clinicDisplayId, onSuccess }) => 
                   {consentChecked && '✓'}
                 </span>
                 <span className={styles.DoctorBookingModal_consentText} onClick={handleConsentOpen}>
-                  I confirm all consent terms for booking this appointment
+                  I confirm that verbal consent has been taken from the patient and agree to GridVital's operational terms.
                 </span>
               </label>
             </div>

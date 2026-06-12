@@ -395,7 +395,7 @@ const PatientAppointment = () => {
                     className={styles.PatientAppointment_consentText}
                     onClick={() => setModalOpen(true)}
                   >
-                    I agree to the <strong>Data Privacy & Digital Token Consent</strong>
+                    I agree to the <strong>Data Privacy & Digital Token Consent</strong> for queue scheduling on GridVital.
                   </span>
                 </label>
               </div>

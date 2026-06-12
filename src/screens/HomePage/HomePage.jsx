@@ -113,6 +113,13 @@ const HomePage = () => {
                   Doctor Login
                   <ChevronRight size={16} />
                 </button>
+                <button
+                  className={styles.homepage_heroSecondary}
+                  onClick={() => navigate('/opslogin')}
+                >
+                  OPS Login
+                  <ChevronRight size={16} />
+                </button>
               </div>
               <div className={styles.homepage_heroTrust}>
                 <CheckCircle size={14} />

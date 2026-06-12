@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/register" element={<UserSignUp />} />
           <Route path="/book-appointment" element={<QRPatientAppointment />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
-          <Route path="/ops/login" element={<OPSLogin />} />
+          <Route path="/opslogin" element={<OPSLogin />} />
         </Route>
 
         <Route element={<ProtectedRoute />}>

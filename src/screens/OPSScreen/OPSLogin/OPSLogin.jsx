@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Eye, EyeOff } from "lucide-react";
 import gridVitalLogo from "../../../assets/images/logos/GridVitalLogo.png";
@@ -12,15 +12,11 @@ import styles from "./OPSLogin.module.css";
 const OPSLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(selectIsAuthenticated);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  if (isAuthenticated) {
-    return <Navigate to="/ops/clinics" replace />;
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

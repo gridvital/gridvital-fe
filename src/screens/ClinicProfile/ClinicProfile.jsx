@@ -18,6 +18,7 @@ import LayoutContainer from '../../components/LayoutContainer/LayoutContainer';
 import { fetchClinicProfile } from '../../services/apis/dashboard.service';
 import useSubscription from '../../hooks/useSubscription';
 import LoadingDots from '../../components/LoadingDots/LoadingDots';
+import { APP_VERSION } from '../../config/appVersion';
 import styles from './ClinicProfile.module.css';
 
 const subTypeConfig = {
@@ -167,6 +168,7 @@ const ClinicProfile = () => {
             <p className={styles.ClinicProfile_errorText}>Failed to load profile</p>
           </div>
         )}
+        <div className={styles.ClinicProfile_version}>v{APP_VERSION}</div>
       </div>
     </LayoutContainer>
   );

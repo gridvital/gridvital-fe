@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Share2, Download, Printer, Clock, Minus } from 'lucide-react';
 import LayoutContainer from '../../../components/LayoutContainer/LayoutContainer';
 import { fetchDashboardData, fetchTodayPatients, currentConsulattionStatus } from '../../../services/apis/dashboard.service';
 import { selectRefreshTrigger } from '../../../store/dashboard/dashboard.selectors';
+import { triggerRefresh } from '../../../store/dashboard/dashboard.slice';
 import useSubscription from '../../../hooks/useSubscription';
 import SubscriptionBanner from '../../../components/SubscriptionBanner/SubscriptionBanner';
 import { QRCodeSVG } from 'qrcode.react';
 import LoadingDots from '../../../components/LoadingDots/LoadingDots';
 import TodayPatientsDetails from '../MobileDashboard/TodayPatientsDetails';
+import DoctorBookingModal from '../../../components/DoctorBookingModal/DoctorBookingModal';
 import styles from './DesktopDashboard.module.css';
 
 const statusClassMap = {
@@ -20,12 +22,14 @@ const statusClassMap = {
 };
 
 const DesktopDashboard = () => {
+  const dispatch = useDispatch();
   const refreshTrigger = useSelector(selectRefreshTrigger);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [consultationStatus, setConsultationStatus] = useState(null);
   const [patients, setPatients] = useState([]);
   const [selectedTokenId, setSelectedTokenId] = useState(null);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const qrRef = useRef(null);
   const { subscription } = useSubscription();
 
@@ -245,9 +249,21 @@ const DesktopDashboard = () => {
               </div>
             )}
             <p className={styles.DesktopDashboard_qrLabel}>Scan to book appointment</p>
+            <button className={styles.DesktopDashboard_doctorBookingBtn} onClick={() => setBookingModalOpen(true)}>
+              + Book for Patient
+            </button>
           </div>
         </div>
       </div>
+
+      {bookingModalOpen && (
+        <DoctorBookingModal
+          isOpen={bookingModalOpen}
+          onClose={() => setBookingModalOpen(false)}
+          clinicDisplayId={data?.clinicDisplayId}
+          onSuccess={() => { dispatch(triggerRefresh()); setBookingModalOpen(false); }}
+        />
+      )}
 
       {selectedTokenId && (
         <TodayPatientsDetails

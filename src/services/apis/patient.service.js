@@ -5,6 +5,10 @@ export const patientQrRegister = (payload) => {
   return postRequest(API_ROUTES.PATIENT_QR_REGISTER, payload);
 };
 
+export const doctorRegisterPatient = (payload) => {
+  return postRequest(API_ROUTES.DOCTOR_REGISTER_PATIENT, payload);
+};
+
 export const clinicDetailPublic = (clinicDisplayId) => {
   return getRequest(`${API_ROUTES.CLINIC_DETAILS_PUBLIC}/${clinicDisplayId}`);
 };

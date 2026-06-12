@@ -175,8 +175,8 @@ const UserLogin = () => {
                     className={styles.mobileLogo}
                   />
                 </div>
-                <p className={styles.trustText}>
-                  Trusted for Digital Gold and Wealth Investment
+                <p className={styles.trustText} style={{ cursor: 'pointer' }} onClick={() => navigate('/ops/login')}>
+                  Manage Bookings & Live Patient Flow
                   <span style={{ fontSize: '10px', marginLeft: '6px', color: '#94a3b8', fontWeight: 400 }}>
                     v{APP_VERSION}
                   </span>

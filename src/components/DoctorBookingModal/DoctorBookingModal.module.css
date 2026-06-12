@@ -1,0 +1,364 @@
+.DoctorBookingModal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 16px;
+  animation: DoctorBookingModal_fadeIn 0.2s ease;
+}
+
+@keyframes DoctorBookingModal_fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.DoctorBookingModal_modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: DoctorBookingModal_slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes DoctorBookingModal_slideIn {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.DoctorBookingModal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+}
+
+.DoctorBookingModal_title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.DoctorBookingModal_closeBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.DoctorBookingModal_closeBtn:hover {
+  background: #e2e8f0;
+}
+
+.DoctorBookingModal_form {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.DoctorBookingModal_field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.DoctorBookingModal_label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.DoctorBookingModal_input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.DoctorBookingModal_input:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.DoctorBookingModal_inputError {
+  border-color: #ef4444;
+}
+
+.DoctorBookingModal_inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.DoctorBookingModal_textarea {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #0F172A;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 80px;
+}
+
+.DoctorBookingModal_textarea:focus {
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.DoctorBookingModal_error {
+  font-size: 12px;
+  color: #ef4444;
+  margin: 2px 0 0;
+}
+
+.DoctorBookingModal_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.DoctorBookingModal_genderRow {
+  display: flex;
+  gap: 10px;
+}
+
+.DoctorBookingModal_genderOption {
+  flex: 1;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748B;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.DoctorBookingModal_genderOptionActive {
+  border-color: #0284C7;
+  background: #f0f9ff;
+  color: #0284C7;
+  font-weight: 600;
+}
+
+.DoctorBookingModal_genderRadio {
+  display: none;
+}
+
+.DoctorBookingModal_consentRow {
+  margin-top: 4px;
+}
+
+.DoctorBookingModal_consentLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #475569;
+  user-select: none;
+}
+
+.DoctorBookingModal_consentCheckbox {
+  display: none;
+}
+
+.DoctorBookingModal_customCheckbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.DoctorBookingModal_customCheckboxChecked {
+  background: #0284C7;
+  border-color: #0284C7;
+}
+
+.DoctorBookingModal_consentText {
+  line-height: 1.4;
+}
+
+.DoctorBookingModal_consentText strong {
+  color: #0284C7;
+  font-weight: 600;
+}
+
+.DoctorBookingModal_buttonRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.DoctorBookingModal_cancelBtn {
+  flex: 1;
+  height: 52px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.DoctorBookingModal_cancelBtn:hover {
+  background: #f8fafc;
+}
+
+.DoctorBookingModal_submitBtn {
+  flex: 1;
+  height: 52px;
+  border: none;
+  border-radius: 10px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.DoctorBookingModal_submitBtn:hover:not(:disabled) {
+  background: #0369a1;
+}
+
+.DoctorBookingModal_submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.DoctorBookingModal_submitBtnDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.DoctorBookingModal_consentModal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px;
+  animation: DoctorBookingModal_slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.DoctorBookingModal_consentModalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 16px;
+}
+
+.DoctorBookingModal_consentModalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.DoctorBookingModal_consentSection {
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.DoctorBookingModal_consentSectionTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 8px;
+}
+
+.DoctorBookingModal_consentSectionText {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 6px;
+}
+
+.DoctorBookingModal_consentSectionTextHindi {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.DoctorBookingModal_consentModalFooter {
+  display: flex;
+  gap: 10px;
+}
+
+.DoctorBookingModal_consentBtn {
+  flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: 10px;
+  background: #0284C7;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.DoctorBookingModal_consentBtn:hover {
+  background: #0369a1;
+}
+
+.DoctorBookingModal_consentCancelBtn {
+  flex: 1;
+  height: 46px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.DoctorBookingModal_consentCancelBtn:hover {
+  background: #f8fafc;
+}

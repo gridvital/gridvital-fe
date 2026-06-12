@@ -23,6 +23,7 @@ export const API_ROUTES = {
 
 
   // Patients related APIS-------
+  DOCTOR_REGISTER_PATIENT: "/api/clinic/doctor-register-patient",
   PATIENT_QR_REGISTER: "/api/patient/qr-register",
   CLINIC_DETAILS_PUBLIC: "/api/clinic/public",
   PATIENT_CURRENT_TOKEN_CHECK: "/api/patient/current-token",

@@ -16,6 +16,11 @@ const STATUS_CONFIG = {
     dotClass: styles.success_statusDot_inProgress,
     label: "In Progress",
   },
+  "In-Consultation": {
+    pillClass: styles.success_statusPill_inProgress,
+    dotClass: styles.success_statusDot_inProgress,
+    label: "In Consultation",
+  },
   Completed: {
     pillClass: styles.success_statusPill_completed,
     dotClass: styles.success_statusDot_completed,
@@ -194,9 +199,11 @@ const AppointmentSuccess = () => {
           </div>
 
           <p className={styles.success_queueSubtext}>
-            {tokenData.queuePosition === 1
-              ? "You're next in line!"
-              : `${tokenData.queuePosition - 1} ${tokenData.queuePosition - 1 === 1 ? "patient" : "patients"} ahead of you`}
+            {tokenData.status === "Completed"
+              ? "Your consultation has been completed"
+              : tokenData.queuePosition === 1
+                ? "You're next in line!"
+                : `${tokenData.queuePosition - 1} ${tokenData.queuePosition - 1 === 1 ? "patient" : "patients"} ahead of you`}
           </p>
 
           <div className={styles.success_aheadTokens}>
@@ -211,7 +218,9 @@ const AppointmentSuccess = () => {
               </>
             ) : (
               <span className={styles.success_emptyQueue}>
-                No tokens ahead — you're first!
+                {tokenData.status === "Completed"
+                  ? "Your consultation has been completed"
+                  : "No tokens ahead — you're first!"}
               </span>
             )}
           </div>

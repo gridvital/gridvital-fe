@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Eye, EyeOff } from "lucide-react";
 import gridVitalLogo from "../../../assets/images/logos/GridVitalLogo.png";
@@ -19,8 +19,7 @@ const OPSLogin = () => {
   const [loading, setLoading] = useState(false);
 
   if (isAuthenticated) {
-    navigate("/ops/clinics", { replace: true });
-    return null;
+    return <Navigate to="/ops/clinics" replace />;
   }
 
   const handleSubmit = async (e) => {
@@ -39,7 +38,9 @@ const OPSLogin = () => {
     setLoading(false);
 
     if (res?.success) {
-      dispatch(setAuthFromLogin({ authToken: res.token, roles: [res.userType] }));
+      dispatch(
+        setAuthFromLogin({ authToken: res.token, roles: [res.userType] }),
+      );
       localStorage.setItem("opsUserType", res.userType);
       navigate("/ops/clinics", { replace: true });
     } else {
@@ -51,7 +52,11 @@ const OPSLogin = () => {
     <div className={styles.OPSLogin_container}>
       <div className={styles.OPSLogin_card}>
         <div className={styles.OPSLogin_logoSection}>
-          <img src={gridVitalLogo} alt="GridVital" className={styles.OPSLogin_logo} />
+          <img
+            src={gridVitalLogo}
+            alt="GridVital"
+            className={styles.OPSLogin_logo}
+          />
           <p className={styles.OPSLogin_subtitle}>Operations Panel</p>
         </div>
 

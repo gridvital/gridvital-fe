@@ -115,7 +115,7 @@ const HomePage = () => {
                 </button>
                 <button
                   className={styles.homepage_heroSecondary}
-                  onClick={() => navigate('/opslogin')}
+                  onClick={() => navigate('/ops/login')}
                 >
                   OPS Login
                   <ChevronRight size={16} />

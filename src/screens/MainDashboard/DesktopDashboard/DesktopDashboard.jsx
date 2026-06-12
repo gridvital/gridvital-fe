@@ -30,7 +30,7 @@ const DesktopDashboard = () => {
   const { subscription } = useSubscription();
 
   const qrUrl = data?.clinicDisplayId
-    ? `https://gridvital.in/book-appointment?clinicId=${data.clinicDisplayId}`
+    ? `https://gridvital.vercel.app/book-appointment?clinicId=${data.clinicDisplayId}`
     : '';
 
   const handleDownload = useCallback(() => {

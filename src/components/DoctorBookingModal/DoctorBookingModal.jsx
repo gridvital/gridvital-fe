@@ -27,20 +27,20 @@ const DoctorBookingModal = ({ isOpen, onClose, clinicDisplayId, onSuccess }) => 
     }
   };
 
-  const validate = () => {
-    const errs = {};
-    if (!form.name.trim()) errs.name = 'Name is required';
-    if (!form.phone.trim()) errs.phone = 'Phone number is required';
-    else if (!/^\d{10}$/.test(form.phone.trim())) errs.phone = 'Enter a valid 10-digit phone number';
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errs.email = 'Enter a valid email';
-    if (!form.gender) errs.gender = 'Select gender';
-    if (!form.age || Number(form.age) < 1 || Number(form.age) > 150) errs.age = 'Enter a valid age';
-    if (!form.complaints.trim()) errs.complaints = 'Please describe complaints';
-    if (!consentChecked) errs.consent = 'You must accept the consent terms';
-    return errs;
-  };
-
   const handleSubmit = useCallback(async (e) => {
+    const validate = () => {
+      const errs = {};
+      if (!form.name.trim()) errs.name = 'Name is required';
+      if (!form.phone.trim()) errs.phone = 'Phone number is required';
+      else if (!/^\d{10}$/.test(form.phone.trim())) errs.phone = 'Enter a valid 10-digit phone number';
+      if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errs.email = 'Enter a valid email';
+      if (!form.gender) errs.gender = 'Select gender';
+      if (!form.age || Number(form.age) < 1 || Number(form.age) > 150) errs.age = 'Enter a valid age';
+      if (!form.complaints.trim()) errs.complaints = 'Please describe complaints';
+      if (!consentChecked) errs.consent = 'You must accept the consent terms';
+      return errs;
+    };
+
     e.preventDefault();
     const errs = validate();
     setErrors(errs);
